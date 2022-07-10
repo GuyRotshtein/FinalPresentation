@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Home Page</title>
+    <script src="./js/javascript.js"></script>
+</head>
+
+<body>
+    <header>
+        <a class="topLogo" href="./#"><img src="./images/logo.png" /></a>
+        <h1>ManaPet</h1>
+        <h4 class="brudCrumbs">
+            Your logistics assistant for the pet's daily life
+        </h4>
+        <div class="statusBox">
+            <span class="clockWidget"> time go here</span>
+            <br />
+            <span class="timeWidget"> good time username </span>
+            <img src="./images/greg.png" />
+        </div>
+        <nav>
+            <a href="./index.html" class="selected">Home Page</a>
+            <a href="./Listpage.html">My Pets</a>
+            <a href="#">Events</a>
+            <a href="#">Calendar</a>
+            <a href="#">Logistics</a>
+        </nav>
+        <input class="searchInput" type="text" placeholder="Search" />
+        <svg class="menuHumburger" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+        </svg>
+    </header>
+<!--
+
+    NO HAMBURGER FUCK YOU >:(
+
+    <div class="humburger">
+        <div class="information">
+            <img src="./images/greg.png" alt="" />
+            <h3>Greg</h3>
+        </div>
+
+        <div class="listMenu">
+            <ul>
+                <li class="selected"><a href="./index.html">HomePage</a></li>
+                <li><a href="./Listpage.html">My Pets</a></li>
+                <li><a href="#">Daily Events</a></li>
+                <li><a href="#">Calendar</a></li>
+                <li><a href="#">Logistic</a></li>
+                <div class="line"></div>
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+            <a href="#">About us</a>
+            <span>|</span>
+            <a href="#">Support</a>
+        </div>
+    </div>
+-->
+    <section id="ContentArea">
+        <!-- Up Coming Events -->
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        
+        <div class="upComingEvents">
+            <div class="headerEvents">
+                <h5 class="status">Status</h5>
+                <h3 class="upComEvent">Upcoming events</h3>
+                <h5 class="petName">Pet's name</h5>
+                <h5 class="taskDeadline">Task deadline</h5>
+            </div>
+            <div class="eventList">
+                <div class="newEvent">
+                    <div class="checkBoxDone">
+                        <span>Mark as done</span>
+                        <input type="checkbox" />
+                    </div>
+                    <svg class="iconStatus missedTaskColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                    </svg>
+                    <div class="eventContent">
+                        <h5 class="missedTaskColor">Take barkely for a walk</h5>
+                    </div>
+                    <img class="petPicture" src="./images/Barkley_picture_1.png" />
+                    <h5 class="eventPetName">Sir barkely</h5>
+                    <span class="taskBackdrop eventTime">
+                        <h5 class="missedTaskColor">Today at:<br />7:00 - 7:30</h5>
+                    </span>
+                </div>
+
+                <div class="newEvent">
+                    <div class="checkBoxDone">
+                        <span>Mark as done</span>
+                        <input type="checkbox" />
+                    </div>
+                    <svg class="iconStatus todayTaskColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                    </svg>
+                    <div class="eventContent">
+                        <h5 class="todayTaskColor">Feed Barkley</h5>
+                    </div>
+                    <img class="petPicture" src="./images/Barkley_picture_1.png" />
+                    <h5 class="eventPetName">Sir barkely</h5>
+                    <span class="taskBackdrop eventTime">
+                        <h5 class="todayTaskColor">Today at:<br />8:30 - 9:00</h5>
+                    </span>
+                </div>
+
+                <div class="newEvent">
+                    <div class="checkBoxDone">
+                        <span>Mark as done</span>
+                        <input type="checkbox" />
+                    </div>
+                    <svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                    </svg>
+                    <div class="eventContent">
+                        <h5>Feed Fanuni</h5>
+                    </div>
+                    <img class="petPicture" src="./images/fanuni.png" />
+                    <h5 class="eventPetName">Fanuni</h5>
+                    <span class="taskBackdrop eventTime">
+                        <h5>Today at:<br />9:00 - 9:30</h5>
+                    </span>
+                </div>
+
+                <div class="newEvent">
+                    <div class="checkBoxDone">
+                        <span>Mark as done</span>
+                        <input type="checkbox" />
+                    </div>
+                    <svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                    </svg>
+                    <div class="eventContent">
+                        <h5>Feed Mamramitzi</h5>
+                    </div>
+                    <img class="petPicture" src="./images/mamramitizi.png" />
+                    <h5 class="eventPetName">Mamramitzi</h5>
+                    <span class="taskBackdrop eventTime">
+                        <h5>Today at:<br />9:00 - 9:30</h5>
+                    </span>
+                </div>
+
+                <div class="newEvent">
+                    <div class="checkBoxDone">
+                        <span>Mark as done</span>
+                        <input type="checkbox" />
+                    </div>
+                    <svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                    </svg>
+                    <div class="eventContent">
+                        <h5>Take barkely for a walk</h5>
+                    </div>
+                    <img class="petPicture" src="./images/Barkley_picture_1.png" />
+                    <h5 class="eventPetName">Sir barkely</h5>
+                    <span class="taskBackdrop eventTime">
+                        <h5>Today at:<br />18:00 - 18:30</h5>
+                    </span>
+                </div>
+            </div>
+        </div>
+-->
+        <!-- Requring Replacement -->
+        <div class="reqReplacement">
+            <div class="headerEvents">
+                <h5 class="status">Status</h5>
+                <h3 class="upComEvent">Upcoming Replacements</h3>
+                <h5 class="petName">Pet's name</h5>
+                <h5 class="taskDeadline">Expiration deadline</h5>
+            </div>
+
+            <div class="replacementList">
+                <div class="newEvent">
+                    <div class="checkBoxDone">
+                        <span>Mark as done</span>
+                        <input type="checkbox" />
+                    </div>
+                    <svg class="iconStatus missedTaskColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                    </svg>
+                    <div class="eventContent">
+                        <h5 class="missedTaskColor">Kibble 25kg food bag</h5>
+                    </div>
+                    <img class="petPicture" src="./images/Barkley_picture_1.png" />
+                    <h5 class="eventPetName">Sir barkely</h5>
+                    <span class="taskBackdrop eventTime">
+                        <h5 class="missedTaskColor">Ends in:<br />3 days ago</h5>
+                    </span>
+                </div>
+
+                <div class="newEvent">
+                    <div class="checkBoxDone">
+                        <span>Mark as done</span>
+                        <input type="checkbox" />
+                    </div>
+                    <svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                    </svg>
+                    <div class="eventContent">
+                        <h5>Simba 10kg food bag</h5>
+                    </div>
+                    <img class="petPicture" src="./images/fanuni.png" />
+                    <h5 class="eventPetName">Fanuni</h5>
+                    <span class="taskBackdrop eventTime">
+                        <h5>Ends in:<br />21 days</h5>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
