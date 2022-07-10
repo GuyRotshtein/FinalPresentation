@@ -9,6 +9,12 @@
 *:focus {
     outline: none;
 }
+
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
 span{
     color: black;
 }
@@ -1808,4 +1814,60 @@ h3 {
     padding-bottom: 20px;
     margin-left: 976px;
     background-color: #f3f8f7;
+}
+
+#loginWrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+#loginWrapper main {
+    position: relative;
+    top: 151px;
+    margin: 00px auto;
+    padding: 0px 0px;
+    max-width: 720px;
+    background-color: #c2dcd9;
+    padding: 40px;
+    box-shadow: 1px 1px 3px #368d82;
+}
+
+#loginWrapper main section {
+    top: 0px;
+}
+
+#loginWrapper #formWrapper {
+    margin: 0px auto;
+    padding: 40px;
+    box-shadow: 0px 0px 0px #368d82;
+}
+
+#loginBG {
+    width: 100%;
+    height: auto;
+}
+
+#loginBG img {
+    display: block;
+    top: 0px;
+    margin: 0px auto;
+    width: auto;
+    height: 400px;
+    box-shadow: 0px 0px 0px #368d82;
+    background-image: url(/images/Backgrounds/Login/BG1.jpg);
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#imageFade {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 40px;
+    bottom: 40px;
+    margin: 0px auto;
+    background: rgba(255, 255, 255, 0) linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #c2dcd9 80%) repeat scroll 0 0;
 }
