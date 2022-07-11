@@ -1,16 +1,18 @@
 <?php
+
 include "db.php";
-include "config.php";
+//include "config.php";
+session_start();
 
-if (!empty($_POST["loginEmail"])) {
-    $query = "SELECT * FROM tbl_ WHERE email= '" . $_POST["loginEmail"] . "' and password = '" . $_POST["loginPass"] . "' ";
-
+if (!empty($_POST["submit"])) {
+    $query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_owner WHERE email= '" . $_POST["uMail"] . "' and password = '" . $_POST["uPass"] . "' ";
 
     $result = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($result);
 
     if (is_array($row)) {
-        header('Location: ' . URL . 'homepage.php');
+        $_SESSION["owner_id"] = $row["owner_id"];
+        header('Location: homepage.php');
     } else {
         $message = "Invalid email or password!";
     }
@@ -57,21 +59,22 @@ if (!empty($_POST["loginEmail"])) {
                 <div id="formWrapper">
                     <form action="#" method="post">
                         <div class="form-group">
-                            <input type="email" class="form-control" id="loginEmail" name="uMail" aria-describedby="emailhelp" placeholder="Enter your Email address" required autocomplete="off">
+                            <input type="email" class="form-control" name="uMail" placeholder="Enter your Email address" required autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="loginPass" name="uPass" placeholder="Enter your password" required autocomplete="off">
+                            <input type="password" class="form-control" name="uPass" placeholder="Enter your password" required autocomplete="off">
                         </div>
-                        <button type="submit" class="btn btn-primary">Log in</button>
-                        <div class="errorMessage"><?php if (isset($message)) {
-                                                        echo $message;
-                                                    } ?></div>
-                    </form>
+                        <input name="submit" type="submit" class="btn btn-primary" value="Log in">
+                        <div class="errorMessage"><?php if (isset($message)) {echo $message;}?></div>
                     </form>
                 </div>
             </section>
         </main>
     </div>
 </body>
-
 </html>
+
+<?php
+    //close DB connection
+    mysqli_close($connection);
+?>
