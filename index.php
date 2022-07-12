@@ -42,7 +42,7 @@ if (!empty($_POST["submit"])) {
             <h1>ManaPet</h1>
             <h4 class="brudCrumbs">Your logistics assistant for the pet's daily life</h4>
             <div class="statusBox">
-                <span class="clockWidget"> time go here</span>
+                <span class="clockWidget"> time</span>
                 <br>
                 <span class="timeWidget"> good time , user </span>
                 <img src="./images/greg.png">

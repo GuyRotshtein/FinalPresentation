@@ -29,9 +29,9 @@ $row = mysqli_fetch_array($result);
         <h1>ManaPet</h1>
         <h4 class="brudCrumbs">Your logistics assistant for the pet's daily life</h4>
         <div class="statusBox">
-            <span class="clockWidget">Local time</span>
+            <span class="clockWidget">time</span>
             <br>
-            <span class="timeWidget"> good day, user </span>
+            <span class="timeWidget">good day, user</span>
             <img src="./images/greg.png">
         </div>
         <nav>
