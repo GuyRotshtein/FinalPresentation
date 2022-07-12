@@ -30,9 +30,9 @@ $row = mysqli_fetch_array($result);
         <h1>ManaPet</h1>
         <h4 class="brudCrumbs">Your logistics assistant for the pet's daily life</h4>
         <div class="statusBox">
-            <span class="clockWidget"> time go here</span>
+            <span class="clockWidget">Local time</span>
             <br>
-            <span class="timeWidget"> good time username </span>
+            <span class="timeWidget"> good day, user </span>
             <img src="./images/greg.png">
         </div>
         <nav>
@@ -48,9 +48,9 @@ $row = mysqli_fetch_array($result);
         </svg>
     </header>
     <nav class="breadCrumbs">
-        <a href="./#" class="firstBreadCrumb">Home</a>
-        <a href="./Listpage.html" class="BreadCrumb">My Pets</a>
-        <a href="./#" class="currentBreadCrumb">Pet List</a>
+        <a href="./homePage.php" class="firstBreadCrumb">Home</a>
+        <a href="./Listpage.php" class="BreadCrumb">My Pets</a>
+        <a href="./Listpage.php" class="currentBreadCrumb">Pet List</a>
     </nav>
 
     <div class="humburger">
