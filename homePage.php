@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <title>ManaPet - Home</title>
-    <script defer src="./js/javascript.js"></script>
+    <script defer src="./js/javascript.js" type="module"></script>
 </head>
 
 <body>

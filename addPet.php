@@ -6,6 +6,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/style.css">
+    <script defer src="./js/javascript.js" type="module"></script>
     <title>successfully added new pet</title>
 </head>
 <body>
@@ -28,6 +29,11 @@
         </nav>
         <input type="text" placeholder="Search">
     </header>
+    <nav class="breadCrumbs">
+        <a href="./homePage.php" class="firstBreadCrumb">Home</a>
+        <a href="./Listpage.php" class="BreadCrumb">My Pets</a>
+        <a href="#" class="currentBreadCrumb">Pet added</a>
+    </nav>
     <section>
         <h1 class="success">Pet was added successfully</h1>    
         <?php            

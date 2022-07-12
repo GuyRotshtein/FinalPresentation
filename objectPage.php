@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>ManaPet - pet page</title>
-    <script defer src="./js/javascript.js"></script>
-    <script defer src="./js/objectPage.js"></script>
+    <script defer src="./js/objectPage.js" type="module"></script>
 </head>
 
 <body>

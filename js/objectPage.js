@@ -1,14 +1,16 @@
-/* TEMPORARY MOCK DATA GENERATION */
 
-// adding new task       
-    const arrClasses = ['taskInfo','checkBoxDone','taskTime','userControl'];
-    const divContent = ['Take barkley for a walk','Feed Barkley', 'Take barkley for a walk','Feed Barkley',
-                      'Make sure to give Barkley his medicine', 'Take barkley for a walk'];
-    const timeTask   = ['07:00 - 07:30','08:30 - 09:00', '18:30 - 19:00', '18:30 - 19:00', '19:00 - 19:15',
-                      '19:15 - 19:45'];
-    //add new status 
-    const divStatusContent = ['Kibble 25kg food bag', 'Simba quality snacks bag', 'Medical pills (in my notes)'];
-    const timeStatus   = ['3 Days ago', '25 Days', '44 Days'];
+import myHeader from "./myHeader.js"
+
+   // adding new task       
+   const arrClasses = ['taskInfo','checkBoxDone','taskTime','userControl'];
+   const divContent = ['Take barkley for a walk','Feed Barkley', 'Take barkley for a walk','Feed Barkley',
+                     'Make sure to give Barkley his medicine', 'Take barkley for a walk'];
+   const timeTask   = ['07:00 - 07:30','08:30 - 09:00', '18:30 - 19:00', '18:30 - 19:00', '19:00 - 19:15',
+                     '19:15 - 19:45'];
+    
+   //add new status 
+   const divStatusContent = ['Kibble 25kg food bag', 'Simba quality snacks bag', 'Medical pills (in my notes)'];
+   const timeStatus   = ['3 Days ago', '25 Days', '44 Days'];
 
 for(let l = 0; l < 6; l++){
     const newTaksDiv = document.createElement("div");

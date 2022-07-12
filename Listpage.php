@@ -21,7 +21,7 @@ $row = mysqli_fetch_array($result);
         rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css">
     <title>ManaPet - My pets</title>
-    <script defer src="./js/javascript.js"></script>
+    <script defer src="./js/javascript.js" type="module"></script>
 </head>
 <body>
     <header>
