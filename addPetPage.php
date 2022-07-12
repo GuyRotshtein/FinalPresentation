@@ -18,18 +18,18 @@
 
 <body>
     <header>
-        <a class="topLogo" href="./#"><img src="./images/logo.png"></a>
+    <a class="topLogo" href="./#"><img src="./images/logo.png"></a>
         <h1>ManaPet</h1>
-        <h4 class="brudCrumbs">Your logistics assistant for the pet's daily life</h4>
+        <h4 class="brudCrumbs">Your logistics assistant for the pet's daily life my ass</h4>
         <div class="statusBox">
             <span class="clockWidget"> time go here</span>
             <br>
             <span class="timeWidget"> good time username </span>
             <img src="./images/greg.png">
-        </div>  
+        </div>
         <nav>
-            <a href="./homePage.php">Home Page</a>
-            <a href="./Listpage.php"  class="selected">My Pets</a>
+            <a href="./index.html">Home Page</a>
+            <a href="./Listpage.html" class="selected">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
