@@ -1,3 +1,16 @@
+<?php
+
+include "db.php";
+include "config.php";
+session_start();
+
+$query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id = '1'";
+
+global $result, $row;
+$result = mysqli_query($connection, $query);
+$row = mysqli_fetch_array($result);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,8 +36,8 @@
             <img src="./images/greg.png">
         </div>
         <nav>
-            <a href="./index.html">Home Page</a>
-            <a href="./Listpage.html"  class="selected">My Pets</a>
+            <a href="./homePage.php">Home Page</a>
+            <a href="./Listpage.php"  class="selected">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
@@ -78,9 +91,9 @@
                     </span>
                 </div>
                 <div class="petEntryName"> 
-                    <img src="./images/Barkley_picture_1.png">
+                    <?php echo '<img src="/images/pets/'.$row['pet_id'].'/'.$row['picture'].'"/>'; ?>
                     <span>
-                        Sir Barkley
+                        <?php if(isset($row['name'])) { echo $row['name']; } else { echo "err"; } ?>
                     </span>
                 </div>
                 <div class="petEntryStatus">
@@ -92,7 +105,6 @@
                         <img src="./images/icons/Notification_Important_Icon_1.png">
                         <span class="todayTaskColor">Close Task</span>
                     </div>
-
                 </div>
             </a>
             <!-- Pets here! -->
@@ -113,3 +125,4 @@
     </div>
 </body>
 </html>
+<?php mysqli_close($connection); ?>

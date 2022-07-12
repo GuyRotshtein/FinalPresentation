@@ -335,6 +335,7 @@ header input::placeholder {
     left: 95px;
     height: 40px;
     width: 40px;
+    border-radius: 100px;
 }
 
 .petEntryName>span {
@@ -1130,6 +1131,7 @@ h3 {
         left: 40%;
         height: 70%;
         width: auto;
+        border-radius: 100px;
     }
 
     .petEntryName>span {

@@ -1,3 +1,3 @@
 <?php
-    define("URL","http//localhost/dev_218/");
+    define("URL","http//localhost/");
 ?>

@@ -4,6 +4,7 @@
     $dbpass = "studDBpwWeb1!";
     $dbname = "dbShnkr22studWeb1";
 
+    global $connection;
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
     // connection status check
