@@ -27,8 +27,8 @@
             <img src="./images/greg.png" />
         </div>
         <nav>
-            <a href="./index.html" class="selected">Home Page</a>
-            <a href="./Listpage.html">My Pets</a>
+            <a href="./homepage.php" class="selected">Home Page</a>
+            <a href="./Listpage.php">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
@@ -49,8 +49,8 @@
 
         <div class="listMenu">
             <ul>
-                <li class="selectedOnMenu"><a href="./index.html">HomePage</a></li>
-                <li><a href="./Listpage.html">My Pets</a></li>
+                <li class="selectedOnMenu"><a href="./homepage.php">HomePage</a></li>
+                <li><a href="./Listpage.php">My Pets</a></li>
                 <li><a href="#">Daily Events</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Logistic</a></li>

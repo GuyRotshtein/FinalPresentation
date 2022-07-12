@@ -1,5 +1,4 @@
 <?php
-
 include "db.php";
 include "config.php";
 session_start();
@@ -9,8 +8,8 @@ $query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id = '1'";
 global $result, $row;
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_array($result);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,8 +60,8 @@ $row = mysqli_fetch_array($result);
 
         <div class="listMenu">
             <ul>
-                <li class="selectedOnMenu"><a href="./index.html">HomePage</a></li>
-                <li><a href="./Listpage.html">My Pets</a></li>
+                <li class="selectedOnMenu"><a href="./homePage.php">HomePage</a></li>
+                <li><a href="./Listpage.php">My Pets</a></li>
                 <li><a href="#">Daily Events</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Logistic</a></li>
@@ -82,7 +81,7 @@ $row = mysqli_fetch_array($result);
             <h3>Task status</h3>
         </article>
         <div id="petList">
-            <a class="petEntry" href="./objectPage.html">
+            <a class="petEntry" href="./objectPage.php">
                 <div class="entryBackground"></div>
                 <div class="petEntryLogistic">
                     <span>
