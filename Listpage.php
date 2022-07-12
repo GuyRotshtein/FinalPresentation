@@ -21,7 +21,7 @@ $row = mysqli_fetch_array($result);
         rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css">
     <title>ManaPet - My pets</title>
-    <script src="./js/javascript.js"></script>
+    <script defer src="./js/javascript.js"></script>
 </head>
 <body>
     <header>
@@ -65,7 +65,7 @@ $row = mysqli_fetch_array($result);
                 <li><a href="#">Daily Events</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Logistic</a></li>
-                <div class="line"></div>
+                <div class="line">texttext</div>
                 <li><a href="#">My Account</a></li>
                 <li><a href="#">Settings</a></li>
             </ul>
@@ -92,7 +92,7 @@ $row = mysqli_fetch_array($result);
                 <div class="petEntryName"> 
                     <?php echo '<img src="/images/pets/'.$row['pet_id'].'/'.$row['picture'].'"/>'; ?>
                     <span>
-                        <?php if(isset($row['name'])) { echo $row['name']; } else { echo "err"; } ?>
+                        <?php if(isset($row['pet_name'])) { echo $row['pet_name']; } else { echo "ERROR"; } ?>
                     </span>
                 </div>
                 <div class="petEntryStatus">

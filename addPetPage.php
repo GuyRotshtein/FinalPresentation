@@ -11,9 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./js/javascript.js"></script>
-
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="./js/javascript.js"></script>
     <title>ManaPet - add a new pet</title>
 </head>
 
@@ -27,10 +26,10 @@
             <br>
             <span class="timeWidget"> good time username </span>
             <img src="./images/greg.png">
-        </div>
+        </div>  
         <nav>
-            <a href="./index.html">Home Page</a>
-            <a href="./Listpage.html"  class="selected">My Pets</a>
+            <a href="./homePage.php">Home Page</a>
+            <a href="./Listpage.php"  class="selected">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
@@ -41,8 +40,8 @@
         </svg>
     </header>
     <nav class="breadCrumbs">
-        <a href="./index" class="firstBreadCrumb">Home</a>
-        <a href="./Listpage.html" class="BreadCrumb">My Pets</a>
+        <a href="./homePage.php" class="firstBreadCrumb">Home</a>
+        <a href="./Listpage.php" class="BreadCrumb">My Pets</a>
         <a href="#" class="currentBreadCrumb">Add a pet</a>
     </nav>
 
@@ -54,8 +53,8 @@
 
         <div class="listMenu">
             <ul>
-                <li class="selectedOnMenu"><a href="./index.html">HomePage</a></li>
-                <li><a href="./Listpage.html">My Pets</a></li>
+                <li class="selectedOnMenu"><a href="./homePage.php">HomePage</a></li>
+                <li><a href="./Listpage.php">My Pets</a></li>
                 <li><a href="#">Daily Events</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Logistic</a></li>
