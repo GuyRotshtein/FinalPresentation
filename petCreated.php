@@ -32,7 +32,7 @@ if(!isset($_SESSION["owner_id"])){
         </div>
         <nav>
             <a href="./index.html">Home Page</a>
-            <a href="./Listpage.html" class="selected">My Pets</a>
+            <a href="./listPage.html" class="selected">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
@@ -44,7 +44,7 @@ if(!isset($_SESSION["owner_id"])){
     </header>
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
-        <a href="./Listpage.php" class="BreadCrumb">My Pets</a>
+        <a href="./listPage.php" class="BreadCrumb">My Pets</a>
         <a href="#" class="currentBreadCrumb">Pet added</a>
     </nav>
     <section>
@@ -62,3 +62,7 @@ if(!isset($_SESSION["owner_id"])){
 </body>
 
 </html>
+<?php
+    //close DB connection
+    mysqli_close($connection);
+?>

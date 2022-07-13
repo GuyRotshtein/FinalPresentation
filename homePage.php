@@ -52,7 +52,7 @@ if(!isset($_SESSION["owner_id"])){
         </div>
         <nav>
             <a href="./homePage.php" class="selected">Home Page</a>
-            <a href="./Listpage.php">My Pets</a>
+            <a href="./listPage.php">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
@@ -74,7 +74,7 @@ if(!isset($_SESSION["owner_id"])){
         <div class="listMenu">
             <ul>
                 <li class="selectedOnMenu"><a href="./homepage.php">HomePage</a></li>
-                <li><a href="./Listpage.php">My Pets</a></li>
+                <li><a href="./listPage.php">My Pets</a></li>
                 <li><a href="#">Daily Events</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Logistic</a></li>
@@ -156,3 +156,8 @@ if(!isset($_SESSION["owner_id"])){
 </body>
 
 </html>
+
+<?php
+    //close DB connection
+    mysqli_close($connection);
+?>

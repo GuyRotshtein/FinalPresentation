@@ -6,5 +6,5 @@ const time = new Date();
 
     const url  = window.location.href
 
-    if (time.getHours() < 12) clockWidget.innerHTML = "Good Morning User";
-    if (time.getHours() > 12) clockWidget.innerHTML = "Good Evning User"; 
+    if (time.getHours() < 12) clockWidget.innerHTML = "Good Morning, User";
+    if (time.getHours() > 12) clockWidget.innerHTML = "Good Evning, User"; 

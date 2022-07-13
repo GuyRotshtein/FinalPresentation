@@ -17,8 +17,8 @@ if (!empty($_POST["submit"])) {
     } else {
         $message = "Invalid email or password!";
     }
-
 }
+
 ?>
 
 <!DOCTYPE html>

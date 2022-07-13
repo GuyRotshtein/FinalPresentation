@@ -40,7 +40,7 @@ $row = mysqli_fetch_array($result);
         </div>
         <nav>
             <a href="./homePage.php">Home Page</a>
-            <a href="./Listpage.php" class="selected">My Pets</a>
+            <a href="./listPage.php" class="selected">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
@@ -52,8 +52,8 @@ $row = mysqli_fetch_array($result);
     </header>
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
-        <a href="./Listpage.php" class="BreadCrumb">My Pets</a>
-        <a href="./Listpage.php" class="currentBreadCrumb">Pet List</a>
+        <a href="./listPage.php" class="BreadCrumb">My Pets</a>
+        <a href="./listPage.php" class="currentBreadCrumb">Pet List</a>
     </nav>
 
     <div class="humburger">
@@ -65,7 +65,7 @@ $row = mysqli_fetch_array($result);
         <div class="listMenu">
             <ul>
                 <li class="selectedOnMenu"><a href="./homePage.php">HomePage</a></li>
-                <li><a href="./Listpage.php">My Pets</a></li>
+                <li><a href="./listPage.php">My Pets</a></li>
                 <li><a href="#">Daily Events</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Logistic</a></li>
@@ -119,7 +119,7 @@ $row = mysqli_fetch_array($result);
             </form>
             <!-- Pets here! -->
             <div class="addEntry" href="#">
-                <a href="./addPetPage.html"><img src="./images/icons/Add_an_essential_1.png"></a>
+                <a href="./addPetPage.php"><img src="./images/icons/Add_an_essential_1.png"></a>
             </div>
 
             <div class="emptyEntry"></div>

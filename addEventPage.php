@@ -1,25 +1,17 @@
-<?php 
+<?php
 include "db.php";
+
 session_start();
 header("Cache-Control: no-cache, no-store", true);
+
 if(!isset($_SESSION["owner_id"])){
     header('Location: index.php');
 }
-
-$query =    'SELECT * 
-            FROM dbShnkr22studWeb1.tbl_218_pet 
-            RIGHT JOIN dbShnkr22studWeb1.tbl_218_owners_pets
-            ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
-            AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id = '.$_SESSION['owner_id'].'';       
-
+//(SELECT * FROM dbShnkr22studWeb1.tbl_218_owners_pets WHERE owner_id='.$_SESSION["owner_id"].')
+$query = 'SELECT * FROM dbShnkr22studWeb1.tbl_218_pet LEFT JOIN dbShnkr22studWeb1.tbl_218_owners_pets ON dbShnkr22studWeb1.tbl_218_pet.pet_id = (SELECT * FROM dbShnkr22studWeb1.tbl_218_owners_pets WHERE owner_id='.$_SESSION["owner_id"].')';
 $result = mysqli_query($connection, $query);
-while ($row = mysqli_fetch_assoc($result))
-{
-    echo $row['pet_name'].' '.'</br>';
-    echo $row['pet_id'].' '.'</br>';
-    echo $row['age'].' '.'</br>';
-}
-
+$row = mysqli_fetch_assoc($result);
+echo $row['pet_name'];
 ?>
 
 <!DOCTYPE html>
@@ -93,8 +85,8 @@ while ($row = mysqli_fetch_assoc($result))
     </div> 
 
     <section>
-        <h1 class="formTitle">Add a new pet</h1>
-        <div id="formWrapper">
+        <h1 class="formTitle">Add a new event</h1>
+        <div class="eventFormWrapper">
         <form action="/petCreated.php" method="GET">
             <div class="form-group">
               <label for="exampleInputEmail1">Name</label>
@@ -122,3 +114,7 @@ while ($row = mysqli_fetch_assoc($result))
 </body>
 
 </html>
+<?php
+    //close DB connection
+    mysqli_close($connection);
+?>

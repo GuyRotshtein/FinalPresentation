@@ -5,12 +5,11 @@ include "config.php";
 session_start();
 header("Cache-Control: no-cache, no-store", true);
 
-if(!isset($_SESSION["owner_id"])){
-    header('Location: index.php');
-}
+if(!isset($_SESSION["owner_id"])){header('Location: index.php');}
 
+if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
 $id = $_GET['pet_id'];
-//echo $id;
+
 $query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id = " . $id;
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_array($result);
@@ -42,7 +41,7 @@ $row = mysqli_fetch_array($result);
         </div>
         <nav>
             <a href="./homePage.php">Home Page</a>
-            <a href="./Listpage.php" class="selected">My Pets</a>
+            <a href="./listPage.php" class="selected">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
@@ -54,7 +53,7 @@ $row = mysqli_fetch_array($result);
     </header>
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
-        <a href="./Listpage.php" class="BreadCrumb">My Pets</a>
+        <a href="./listPage.php" class="BreadCrumb">My Pets</a>
         <a href="#" class="BreadCrumb">Sir Barkley</a>
         <a href="#" class="currentBreadCrumb">Pet Page</a>
     </nav>
@@ -67,7 +66,7 @@ $row = mysqli_fetch_array($result);
         <div class="listMenu">
             <ul>
                 <li class="selectedOnMenu"><a href="./homePage.php">HomePage</a></li>
-                <li><a href="./Listpage.php">My Pets</a></li>
+                <li><a href="./listPage.php">My Pets</a></li>
                 <li><a href="#">Daily Events</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Logistic</a></li>
@@ -161,3 +160,7 @@ $row = mysqli_fetch_array($result);
 </body>
 
 </html>
+<?php
+    //close DB connection
+    mysqli_close($connection);
+?>
