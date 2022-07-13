@@ -119,6 +119,7 @@ header h4 {
     color: white;
     font-weight: bold;
 }
+
 .ownerName {
     position: absolute;
     width: 162px;
@@ -129,7 +130,6 @@ header h4 {
     color: white;
     font-weight: bold;
 }
-
 
 .statusBox img {
     position: absolute;
