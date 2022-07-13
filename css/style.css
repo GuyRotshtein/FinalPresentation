@@ -94,7 +94,7 @@ header h4 {
     right: 23px;
     top: 22px;
     height: 46px;
-    width: 202px;
+    width: 250px;
     color: white;
 }
 
@@ -119,6 +119,17 @@ header h4 {
     color: white;
     font-weight: bold;
 }
+.ownerName {
+    position: absolute;
+    width: 162px;
+    text-align: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
 
 .statusBox img {
     position: absolute;

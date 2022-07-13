@@ -7,11 +7,11 @@ window.onload = () =>{
     document.getElementsByClassName("clockWidget")[0].innerHTML = innerHTML=time.getHours() + ":" + time.getMinutes();
     
     if (time.getHours() < 12) {
-        clockWidget.innerHTML = "Good Morning,";
+        clockWidget.innerHTML = "Good Morning";
     }
     
     if (time.getHours() > 12) {
-        clockWidget.innerHTML = "Good Evning,";
+        clockWidget.innerHTML = "Good Evning";
     }
 }
 

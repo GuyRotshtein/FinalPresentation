@@ -8,29 +8,46 @@
         header('Location: index.php');
     }
 
-    // get user 
-    $owner = "SELECT * FROM dbShnkr22studWeb1.tbl_218_owner WHERE owner_id =". $_SESSION['owner_id'];
-    $owner_result = mysqli_query($connection, $owner);
+    //get user 
+    $details_owner = "SELECT * FROM dbShnkr22studWeb1.tbl_218_owner WHERE owner_id = ". $_SESSION['owner_id'];
+    $details_result = mysqli_query($connection, $details_owner);
+    $details = mysqli_fetch_assoc($details_result);
+
+    if(!$details["imge"]){
+        $imge = "defaultUser.jpg";
+    }else{
+        $imge = $details["imge"];
+    }
 
     // get data for events 
-    $events_query = "SELECT *
-        FROM dbShnkr22studWeb1.tbl_218_event ou
-        INNER JOIN dbShnkr22studWeb1.tbl_218_pet u ON u.pet_id = ou.pet_id
-        INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets o ON o.owner_id = 2";
+    $events_query = "SELECT * 
+    FROM dbShnkr22studWeb1.tbl_218_event 
+    INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets
+    ON dbShnkr22studWeb1.tbl_218_event.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+    INNER JOIN dbShnkr22studWeb1.tbl_218_pet
+    ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+    INNER JOIN dbShnkr22studWeb1.tbl_218_owner
+    ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
+    AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =". $_SESSION['owner_id'];
 
     $events_result = mysqli_query($connection, $events_query);
     
     // get data for replacement 
-    $replacement_query = "SELECT *
-    FROM dbShnkr22studWeb1.tbl_218_replacement ou
-    INNER JOIN dbShnkr22studWeb1.tbl_218_pet u ON u.pet_id = ou.pet_id
-    INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets o ON o.owner_id = 2";
+    $replacement_query = "SELECT * 
+    FROM dbShnkr22studWeb1.tbl_218_replacement 
+    INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets
+    ON dbShnkr22studWeb1.tbl_218_replacement.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+    INNER JOIN dbShnkr22studWeb1.tbl_218_pet
+    ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+    INNER JOIN dbShnkr22studWeb1.tbl_218_owner
+	ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
+    AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =" . $_SESSION['owner_id'];
 
     $replacement_result = mysqli_query($connection, $replacement_query);
 
-    if(!$events_result || !$replacement_result || !$owner_result){
+    if(!$events_result || !$replacement_result || !$details_result){
          die("DB connect faild!");
-    }        
+    }else     
 
 ?>
 
@@ -59,8 +76,8 @@
         <div class="statusBox">
             <span class="clockWidget"> </span>
             <br />
-            <span class="timeWidget"> </span>
-            <img src="./images/greg.png" />
+            <span class="timeWidget"></span></br><?php echo '<span class="ownerName">'.$details["name"].'</span>'?>
+            <img src="/images/<?php echo $imge; ?>">
         </div>
         <nav>
             <a href="./index.html" class="selected">Home Page</a>
@@ -78,7 +95,7 @@
         </svg>
     </header>
 
-    <div class="humburger">
+    <!-- <div class="humburger">
         <div class="information">
             <img src="./images/greg.png" alt="" />
             <h3>Greg</h3>
@@ -99,7 +116,7 @@
             <span>|</span>
             <a href="#">Support</a>
         </div>
-    </div>
+    </div> -->
     
     <section>
         <!-- Up Coming Events -->
