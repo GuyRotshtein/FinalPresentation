@@ -9,13 +9,15 @@ if (!empty($_POST["submit"])) {
 
     $result = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($result);
-
+    $_SESSION["imge"] = $row["imge"];
+    
     if (is_array($row)) {
         $_SESSION["owner_id"] = $row["owner_id"];
         header('Location: homePage.php');
     } else {
         $message = "Invalid email or password!";
     }
+
 }
 ?>
 

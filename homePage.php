@@ -1,6 +1,12 @@
 <?php 
     include "db.php";
+
     session_start();
+header("Cache-Control: no-cache, no-store", true);
+
+if(!isset($_SESSION["owner_id"])){
+    header('Location: index.php');
+}
 
     // get data for events 
 
@@ -45,7 +51,7 @@
             <img src="./images/greg.png" />
         </div>
         <nav>
-            <a href="./homepage.php" class="selected">Home Page</a>
+            <a href="./homePage.php" class="selected">Home Page</a>
             <a href="./Listpage.php">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
@@ -93,19 +99,19 @@
             </div>
             <div class="eventList">
                 <?php 
-                    while($row = mysqli_fetch_assoc($result)){
+                    while($replacement = mysqli_fetch_assoc($result)){
                         echo '<div class="newEvent">';
                         echo '<div class="checkBoxDone">
                             <span>Mark as done</span>
                             <input type="checkbox" />
                             </div>';
                         echo ' <div class="eventContent">';
-                        echo '<h5 class="missedTaskColor">' . $row["description"] . '</h5>';
+                        echo '<h5 class="missedTaskColor">' . $replacement["description"] . '</h5>';
                         echo '</div>';
-                        echo ' <img class="petPicture" src="./images/'.$row["picture"].'" />';
-                        echo '<h5 class="eventPetName">' .$row["pet_name"] . '</h5>';
+                        echo ' <img class="petPicture" src="./images/'.$replacement["picture"].'" />';
+                        echo '<h5 class="eventPetName">' .$replacement["pet_name"] . '</h5>';
                         echo '<span class="taskBackdrop eventTime">';
-                        echo '<h5 class="missedTaskColor">'. $row["task_deadline"] . '</h5>';
+                        echo '<h5 class="missedTaskColor">'. $replacement["task_deadline"] . '</h5>';
                         echo '</span>';
                         echo '</div>';
                     }
@@ -122,7 +128,7 @@
             </div>
             <div class="replacementList">
                 <?php 
-                    // while($row1 = mysqli_fetch_assoc($result1)){
+                    // while($replacement1 = mysqli_fetch_assoc($result1)){
                     //     echo '<div class="newEvent">';
                     //     echo '<div class="checkBoxDone">
                     //         <span>Mark as done</span>
@@ -134,12 +140,12 @@
                     //         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                     //         </svg>';
                     //     echo ' <div class="eventContent">';
-                    //     echo '<h5 class="missedTaskColor">' . $row1["description"] . '</h5>';
+                    //     echo '<h5 class="missedTaskColor">' . $replacement1["description"] . '</h5>';
                     //     echo '</div>';
-                    //     echo ' <img class="petPicture" src="./images/'.$row1["picture"].'" />';
-                    //     echo '<h5 class="eventPetName">' .$row1["pet_name"] . '</h5>';
+                    //     echo ' <img class="petPicture" src="./images/'.$replacement1["picture"].'" />';
+                    //     echo '<h5 class="eventPetName">' .$replacement1["pet_name"] . '</h5>';
                     //     echo '<span class="taskBackdrop eventTime">';
-                    //     echo '<h5 class="missedTaskColor">'. $row1["expiration_deadline"] . '</h5>';
+                    //     echo '<h5 class="missedTaskColor">'. $replacement1["expiration_deadline"] . '</h5>';
                     //     echo '</span>';
                     //     echo '</div>';
                     // }

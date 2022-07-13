@@ -1,3 +1,11 @@
+<?php
+session_start();
+header("Cache-Control: no-cache, no-store", true);
+
+if(!isset($_SESSION["owner_id"])){
+    header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
