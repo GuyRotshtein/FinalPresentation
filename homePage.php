@@ -1,3 +1,21 @@
+<?php 
+    include "db.php";
+    session_start();
+
+    // get data for events 
+
+    $query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_event AS tb1 JOIN dbShnkr22studWeb1.tbl_218_owners_pets AS tb2 
+    ON tb1.pet_id = tb2.pet_id WHERE tb2.owner_id =". $_SESSION['owner_id'];
+   
+    //$query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet";
+    $result = mysqli_query($connection, $query);
+    
+    if(!$result){
+         die("DB connect faild!");
+    }        
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,109 +92,26 @@
                 <h5 class="taskDeadline">Task deadline</h5>
             </div>
             <div class="eventList">
-                <div class="newEvent">
-                    <div class="checkBoxDone">
-                        <span>Mark as done</span>
-                        <input type="checkbox" />
-                    </div>
-                    <svg class="iconStatus missedTaskColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                        <path
-                            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
-                    </svg>
-                    <div class="eventContent">
-                        <h5 class="missedTaskColor">Take barkely for a walk</h5>
-                    </div>
-                    <img class="petPicture" src="./images/Barkley_picture_1.png" />
-                    <h5 class="eventPetName">Sir barkely</h5>
-                    <span class="taskBackdrop eventTime">
-                        <h5 class="missedTaskColor">Today at:<br />7:00 - 7:30</h5>
-                    </span>
-                </div>
-
-                <div class="newEvent">
-                    <div class="checkBoxDone">
-                        <span>Mark as done</span>
-                        <input type="checkbox" />
-                    </div>
-                    <svg class="iconStatus todayTaskColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                    </svg>
-                    <div class="eventContent">
-                        <h5 class="todayTaskColor">Feed Barkley</h5>
-                    </div>
-                    <img class="petPicture" src="./images/Barkley_picture_1.png" />
-                    <h5 class="eventPetName">Sir barkely</h5>
-                    <span class="taskBackdrop eventTime">
-                        <h5 class="todayTaskColor">Today at:<br />8:30 - 9:00</h5>
-                    </span>
-                </div>
-
-                <div class="newEvent">
-                    <div class="checkBoxDone">
-                        <span>Mark as done</span>
-                        <input type="checkbox" />
-                    </div>
-                    <svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    </svg>
-                    <div class="eventContent">
-                        <h5>Feed Fanuni</h5>
-                    </div>
-                    <img class="petPicture" src="./images/fanuni.png" />
-                    <h5 class="eventPetName">Fanuni</h5>
-                    <span class="taskBackdrop eventTime">
-                        <h5>Today at:<br />9:00 - 9:30</h5>
-                    </span>
-                </div>
-
-                <div class="newEvent">
-                    <div class="checkBoxDone">
-                        <span>Mark as done</span>
-                        <input type="checkbox" />
-                    </div>
-                    <svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    </svg>
-                    <div class="eventContent">
-                        <h5>Feed Mamramitzi</h5>
-                    </div>
-                    <img class="petPicture" src="./images/mamramitizi.png" />
-                    <h5 class="eventPetName">Mamramitzi</h5>
-                    <span class="taskBackdrop eventTime">
-                        <h5>Today at:<br />9:00 - 9:30</h5>
-                    </span>
-                </div>
-
-                <div class="newEvent">
-                    <div class="checkBoxDone">
-                        <span>Mark as done</span>
-                        <input type="checkbox" />
-                    </div>
-                    <svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    </svg>
-                    <div class="eventContent">
-                        <h5>Take barkely for a walk</h5>
-                    </div>
-                    <img class="petPicture" src="./images/Barkley_picture_1.png" />
-                    <h5 class="eventPetName">Sir barkely</h5>
-                    <span class="taskBackdrop eventTime">
-                        <h5>Today at:<br />18:00 - 18:30</h5>
-                    </span>
-                </div>
+                <?php 
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo '<div class="newEvent">';
+                        echo '<div class="checkBoxDone">
+                            <span>Mark as done</span>
+                            <input type="checkbox" />
+                            </div>';
+                        echo ' <div class="eventContent">';
+                        echo '<h5 class="missedTaskColor">' . $row["description"] . '</h5>';
+                        echo '</div>';
+                        echo ' <img class="petPicture" src="./images/'.$row["picture"].'" />';
+                        echo '<h5 class="eventPetName">' .$row["pet_name"] . '</h5>';
+                        echo '<span class="taskBackdrop eventTime">';
+                        echo '<h5 class="missedTaskColor">'. $row["task_deadline"] . '</h5>';
+                        echo '</span>';
+                        echo '</div>';
+                    }
+                ?>
             </div>
         </div>
-
         <!-- Requring Replacement -->
         <div class="reqReplacement">
             <div class="headerEvents">
@@ -185,48 +120,30 @@
                 <h5 class="petName">Pet's name</h5>
                 <h5 class="taskDeadline">Expiration deadline</h5>
             </div>
-
             <div class="replacementList">
-                <div class="newEvent">
-                    <div class="checkBoxDone">
-                        <span>Mark as done</span>
-                        <input type="checkbox" />
-                    </div>
-                    <svg class="iconStatus missedTaskColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                        <path
-                            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
-                    </svg>
-                    <div class="eventContent">
-                        <h5 class="missedTaskColor">Kibble 25kg food bag</h5>
-                    </div>
-                    <img class="petPicture" src="./images/Barkley_picture_1.png" />
-                    <h5 class="eventPetName">Sir barkely</h5>
-                    <span class="taskBackdrop eventTime">
-                        <h5 class="missedTaskColor">Ends in:<br />3 days ago</h5>
-                    </span>
-                </div>
-
-                <div class="newEvent">
-                    <div class="checkBoxDone">
-                        <span>Mark as done</span>
-                        <input type="checkbox" />
-                    </div>
-                    <svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    </svg>
-                    <div class="eventContent">
-                        <h5>Simba 10kg food bag</h5>
-                    </div>
-                    <img class="petPicture" src="./images/fanuni.png" />
-                    <h5 class="eventPetName">Fanuni</h5>
-                    <span class="taskBackdrop eventTime">
-                        <h5>Ends in:<br />21 days</h5>
-                    </span>
-                </div>
+                <?php 
+                    // while($row1 = mysqli_fetch_assoc($result1)){
+                    //     echo '<div class="newEvent">';
+                    //     echo '<div class="checkBoxDone">
+                    //         <span>Mark as done</span>
+                    //         <input type="checkbox" />
+                    //         </div>';
+                    //     echo '<svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    //         fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                    //         <path
+                    //         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                    //         </svg>';
+                    //     echo ' <div class="eventContent">';
+                    //     echo '<h5 class="missedTaskColor">' . $row1["description"] . '</h5>';
+                    //     echo '</div>';
+                    //     echo ' <img class="petPicture" src="./images/'.$row1["picture"].'" />';
+                    //     echo '<h5 class="eventPetName">' .$row1["pet_name"] . '</h5>';
+                    //     echo '<span class="taskBackdrop eventTime">';
+                    //     echo '<h5 class="missedTaskColor">'. $row1["expiration_deadline"] . '</h5>';
+                    //     echo '</span>';
+                    //     echo '</div>';
+                    // }
+                ?>
             </div>
         </div>
     </section>
