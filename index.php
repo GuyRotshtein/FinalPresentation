@@ -12,7 +12,7 @@ if (!empty($_POST["submit"])) {
 
     if (is_array($row)) {
         $_SESSION["owner_id"] = $row["owner_id"];
-        header('Location: homepage.php');
+        header('Location: homePage.php');
     } else {
         $message = "Invalid email or password!";
     }
@@ -45,7 +45,7 @@ if (!empty($_POST["submit"])) {
                 <span class="clockWidget"> time</span>
                 <br>
                 <span class="timeWidget"> good time , user </span>
-                <img src="./images/greg.png">
+                <img src="./images/defaultUser.jpg">
             </div>
 
         </header>

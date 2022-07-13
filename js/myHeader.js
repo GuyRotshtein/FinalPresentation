@@ -27,7 +27,7 @@ const myHeader = ()=>{
     const time = new Date();
 
     const clockWidget = document.getElementsByClassName("timeWidget")[0];
-    document.getElementsByClassName("clockWidget")[0].innerHTML =`${time.getHours()}:${addZero(time.getMinutes())}`;
+    document.getElementsByClassName("clockWidget")[0].innerHTML =`${addZero(time.getHours())}:${addZero(time.getMinutes())}`;
 
 const url  = window.location.href
 
