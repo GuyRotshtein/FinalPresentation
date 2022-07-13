@@ -876,6 +876,19 @@ h3 {
     color: #ffa834;
 }
 
+.orginalColor {
+    color: black;
+}
+
+.eventList > .newEvent > .eventTime > h5:nth-child(2) {
+    position: absolute;
+    margin-top: 20px;
+}
+
+.replacementList > .newEvent > .eventTime > h5 {
+    margin: auto;
+}
+
 .newEvent .taskBackdrop {
     position: absolute;
     width: 178px;

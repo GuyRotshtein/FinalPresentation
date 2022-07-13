@@ -100,7 +100,7 @@
             <a href="#">Support</a>
         </div>
     </div>
-
+    
     <section>
         <!-- Up Coming Events -->
         <div class="upComingEvents">
@@ -121,13 +121,13 @@
                         echo '<svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16"><path class="path"/></svg>';
                         echo ' <div class="eventContent">';
-                        echo '<h5 class="missedTaskColor">' . $event["information"] . '</h5>';
+                        echo '<h5 class="getInfo">' . $event["information"] . '</h5>';
                         echo '</div>';
                         echo ' <img class="petPicture" src="./images/'.$event["picture"].'" />';
                         echo '<h5 class="eventPetName">' .$event["pet_name"] . '</h5>';
                         echo '<span class="taskBackdrop eventTime">';
-                        echo '<h5 class="checkDate">'. $event["task_deadline"] . '</h5>';
-                        echo'<h5> </br>' . $event["from"] . ' - ' . $event["to"] . '</h5>';
+                        echo '<h5 class="getDate">'. $event["task_deadline"] . '</h5>';
+                        echo'<h5 class="fromTo">' . $event["from"] . ' - ' . $event["to"] . '</h5>';
                         echo '</span>';
                         echo '</div>';
                     }
@@ -153,12 +153,12 @@
                         echo '<svg class="iconStatus" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                             fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16"><path class="path"/></svg>';
                         echo ' <div class="eventContent">';
-                        echo '<h5 class="missedTaskColor">' . $replacement["information"] . '</h5>';
+                        echo '<h5 class="getInfo">' . $replacement["information"] . '</h5>';
                         echo '</div>';
                         echo ' <img class="petPicture" src="./images/'.$replacement["picture"] .'" />';
                         echo '<h5 class="eventPetName">' .$replacement["pet_name"] . '</h5>';
                         echo '<span class="taskBackdrop eventTime">';
-                        echo '<h5 class="missedTaskColor">'. 'End in -' . $replacement["expiration_deadline"] . '</h5>';
+                        echo '<h5 class="getDate">'. 'End in: ' . $replacement["expiration_deadline"] . '</h5>';
                         echo '</span>';
                         echo '</div>';
                     }
