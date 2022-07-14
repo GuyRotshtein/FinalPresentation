@@ -1,15 +1,3 @@
-function myFunc (data){
-  const xhttp = new XMLHttpRequest();  
-  xhttp.open("GET", "objectPage.php", true);
-  xhttp.send();
-  xhttp.onreadystatechange = function (){
-    if(this.readyState == 4 && this.status == 200){
-      var data = JSON.parse(JSON.stringify(this.responseText));
-    }
-    console.log(data);
-  }
-
-}
 
 const createTaskBackdrop = () => {
     const backdrop = document.createElement("span");

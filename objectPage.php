@@ -40,7 +40,6 @@ if(!$row1["picture"]){
 if(!$result || !$result1){
     die("DB query faild!");
 }
-
 ?>
 
 <!DOCTYPE html>
