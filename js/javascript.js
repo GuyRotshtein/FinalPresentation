@@ -60,66 +60,47 @@ var myFunct = () =>{
             }
         }
 
+        let defaultDate = "orginalColor";
+        let closeDate = "todayTaskColor";
+        let missedDate = "missedTaskColor";
+
         if(diffYears == 0){
             if(diffMonth > 0){
-                orginalDate(orginalPath, status,d,info,fromTo);        
+                taskStyle(defaultDate, orginalPath, status,d,info,fromTo);        
             }else if (diffMonth == 0){
                 if(diffDays == 0){
-                    todayTask(todayPath,status,d,info,fromTo);
+                    taskStyle(closeDate, todayPath,status,d,info,fromTo);
                     if(fromTo){
                         d.textContent = "Today at: "
                     }
                 }else if(diffDays < 0){
-                    missedTask(missedPath, status,d,info,fromTo);
+                    taskStyle(missedDate, missedPath, status,d,info,fromTo);
                 }else{
                     if(diffDays == 1){
                         if(fromTo){
                             d.textContent = "Tomorrow at: ";
                         }
                     }
-                    orginalDate(orginalPath, status,d,info,fromTo);          
+                    taskStyle(defaultDate, orginalPath, status,d,info,fromTo);          
                 }
             }else{
-                missedTask(missedPath, status,d,info,fromTo);
+                taskStyle(missedDate, missedPath, status,d,info,fromTo);
             }
         }else if(diffYears > 0){
-            orginalDate(orginalPath, status,d,info,fromTo);           
+            taskStyle(defaultDate, orginalPath, status,d,info,fromTo);           
         }else{
-            missedTask(missedPath, status,d,info,fromTo);
+            taskStyle(missedDate, missedPath, status,d,info,fromTo);
         }
-
     }
 } 
 
-//add black style to icon,date,from-to 
-function orginalDate(path,status,d,info,fromTo){
+//add style to icon,date,from-to 
+function taskStyle(style,path,status,d,info,fromTo){
     status.setAttribute("d",path);
-    status.classList.add("orginalColor");
-    d.classList.add("orginalColor");
-    info.classList.add("orginalColor");
+    status.classList.add(style);
+    d.classList.add(style);
+    info.classList.add(style);
     if(fromTo){
-        fromTo.classList.add("orginalColor");
-    }    
-}
-
-//add yellow style to icon,date,from-to 
-function todayTask(path,status,d,info,fromTo){
-    status.setAttribute("d",path);
-    status.classList.add("todayTaskColor");
-    d.classList.add("todayTaskColor");
-    info.classList.add("todayTaskColor");    
-    if(fromTo){
-        fromTo.classList.add("todayTaskColor");
-    }            
-}
-
-//add red style to icon,date,from-to 
-function missedTask(path,status,d,info,fromTo){
-    status.setAttribute("d",path);
-    status.classList.add("missedTaskColor");
-    d.classList.add("missedTaskColor");
-    info.classList.add("missedTaskColor");
-    if(fromTo){
-        fromTo.classList.add("missedTaskColor");
-    }          
+        fromTo.classList.add(style);
+    }           
 }
