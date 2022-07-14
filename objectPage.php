@@ -21,13 +21,15 @@ RIGHT JOIN dbShnkr22studWeb1.tbl_218_owners_pets
 ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
 AND dbShnkr22studWeb1.tbl_218_owners_pets.pet_id =" . $id;
 
-$query1 = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE dbShnkr22studWeb1.tbl_218_pet.pet_id =" . $id;
+$query1 = "SELECT * FROM dbShnkr22studWeb1.tbl_218_event 
+RIGHT JOIN dbShnkr22studWeb1.tbl_218_pet 
+ON dbShnkr22studWeb1.tbl_218_event.pet_id = dbShnkr22studWeb1.tbl_218_pet.pet_id
+AND dbShnkr22studWeb1.tbl_218_pet.pet_id =" . $id;
 
 $result = mysqli_query($connection, $query);
 $result1 = mysqli_query($connection, $query1);
 
 $row1 = mysqli_fetch_array($result1);
-
 
 if(!$row1["picture"]){
     $imge = "defaultPet.png";
@@ -35,7 +37,7 @@ if(!$row1["picture"]){
     $imge = $row1["picture"];
 }
 
-if(!$result || !$result){
+if(!$result || !$result1){
     die("DB query faild!");
 }
 
@@ -53,6 +55,7 @@ if(!$result || !$result){
     <link rel="stylesheet" href="./css/style.css">
     <title>ManaPet - pet page</title>
     <script src="./js/loginPage.js" type="module"></script>
+    <script src="./js/objectPage.js" type="module"></script>
 </head>
 
 <body>
@@ -111,7 +114,7 @@ if(!$result || !$result){
         <!--    Pet information    -->
         <div class="info">
             <div>
-                <img class="profilePic" src="/images/<?php echo $imge; ?>">
+                <img class="profilePic" src="/images/pets/<?php echo $imge; ?>">
                 <img class="cameraIcon" src="./images/Camera_Alt_Icon_1.png" alt="">
                 <input type="file">
             </div>
@@ -151,7 +154,7 @@ if(!$result || !$result){
                     <h3>Upcoming Tasks</h3>
                     <h4><a href="#">Next &#62;&#62;</a></h4>
                 </div>
-                <div class="tasks"></div> <!-- Here adding new task from javascript file-->
+                <div id="myForm" class="tasks"></div> <!-- Here adding new task from javascript file-->
             </div>
 
             <div class="logStatus">
