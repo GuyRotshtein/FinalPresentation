@@ -129,7 +129,7 @@ if(!$result_owners || !$result_events){
                 <h5>Species: '.$row["species"].'</h5>
                 <h5>Age: Born in '.$row["age"].'</h5>
                 <br>
-                <form action="/editPetPage.php" method="GET">
+                <form action="'.URL.'/editPetPage.php" method="GET">
                 <input type="hidden" name="pet_id" value="'.$row['pet_id'].'">
                 <button type="submit" class = "petEdit">Edit pet</button>
                 </form>

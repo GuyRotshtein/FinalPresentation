@@ -60,11 +60,11 @@ $row = mysqli_fetch_assoc($result);
     <section>
         <h1 class="formTitle">Delete <?php echo $row["pet_name"];?> ?</h1>
         <div id="formWrapper">
-            <form action="/objectPage.php" method="GET">
+            <form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/objectPage.php" method="GET">
                 <?php echo '<input type="hidden" name="pet_id" value="'.$id.'">'; ?>
                 <button type="submit" class="btn btn-primary">Cancel deleting <?php echo $row['pet_name']; ?></button>
             </form>
-            <form action="/Petdeleted.php" method="GET">
+            <form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/petDeleted.php" method="GET">
             <?php echo '<input type="hidden" name="pet_id" value="'.$id.'">'; ?>
                 <button type="submit" class="deleteButton" class="btn btn-primary">Confirm deleting <?php echo $row['pet_name']; ?></button>
             </form>

@@ -106,7 +106,7 @@ $result = mysqli_query($connection, $query);
                                     </span>
                                 </div>
                                 <div class="petEntryName">
-                                    <img src="/images/upload/'. $row['picture'] .'"/>
+                                    <img src="'.URL.'/images/upload/'. $row['picture'] .'"/>
                                     <span>
                                         ' . $row['pet_name'] . '
                                     </span>
@@ -116,7 +116,7 @@ $result = mysqli_query($connection, $query);
                 if ($row['age'] === 0) {
                 echo '
                                     <div>
-                                        <img src="./images/icons/Error_Icon_1.png">
+                                        <img src="'.URL.'/images/icons/Error_Icon_1.png">
                                         <span class="missedTaskColor">Task missed !</span>
                                     </div>
                 ';
@@ -125,14 +125,14 @@ $result = mysqli_query($connection, $query);
                 if ($row['age'] === 0) {
                     echo '
                                         <div>
-                                            <img src="./images/icons/Notification_Important_Icon_1.png">
+                                            <img src="'.URL.'/images/icons/Notification_Important_Icon_1.png">
                                             <span class="todayTaskColor">Close Task</span>
                                         </div>
                 ';
                 } else {
                     echo '
                                         <div>
-                                            <img src="./images/icons/Clock_Icon_1.png">
+                                            <img src="'.URL.'/images/icons/Clock_Icon_1.png">
                                             <span class="regularTaskColor">No Close tasks</span>
                                         </div>
                 ';

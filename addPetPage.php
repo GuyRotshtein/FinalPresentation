@@ -33,11 +33,11 @@ $categories = json_decode($categoryData,true);
         return
     }
     if(selected.value == '1.png'){
-        imgURL = "/images/upload/1.png";
+        imgURL = "http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/images/upload/1.png";
     } else if(selected.value == '2.png'){
-        imgURL = "/images/upload/2.png";
+        imgURL = "http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/images/upload/2.png";
     } else if(selected.value == '3.png'){
-        imgURL = "/images/upload/3.png";
+        imgURL = "http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/images/upload/3.png";
     } else {
         imgURL = "";
     }
@@ -117,7 +117,7 @@ $categories = json_decode($categoryData,true);
     <section>
         <h1 class="formTitle">Add a new pet</h1>
         <div id="formWrapper">
-        <form action="/petCreated.php" method="GET">
+        <form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/petCreated.php" method="GET">
             <div class="form-group">
               <label for="inputName">Name</label>
               <input type="text" class="form-control" id="inputName" name="petName" aria-describedby="emailHelp" placeholder="Enter pet name" required autocomplete="off">
@@ -151,7 +151,7 @@ $categories = json_decode($categoryData,true);
                     echo '<option value="'. $pic . '.png"> Picture number '. $pic.' </option>';
                 ?>
               </select>
-              <span> <img id="PetImg" src="/images/upload/defaultPet.png"> </span>
+              <span> <img id="PetImg" src="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/images/upload/defaultPet.png"> </span>
             </div>
             <button type="submit" class="btn btn-primary">Add</button>
         </form >

@@ -22,7 +22,7 @@ if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/listPage.js" type="module"></script>
     <title>successfully edited pet info</title>
 </head>
@@ -73,12 +73,12 @@ if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
 
                 $owner_id = $_SESSION["owner_id"];
                 if ($connection->query($sql) === TRUE) {
-                        echo '<form action="/listPage.php" method="GET">';
+                        echo '<form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/listPage.php" method="GET">';
                         echo '<h2 class="success">' . $pet_name . ' had their details updated successfully</h2>';
                         echo '<button type="submit" class="btn btn-primary"> Return to List page </button>';
                         echo '</form>'; 
                 }else {
-                    echo '<form action="/editPetPage.php" method="GET">';
+                    echo '<form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/editPetPage.php" method="GET">';
                     echo '<h4 class=success"> An error occured:' . $sql . '<br>' . $connection->error . '</h4>';
                     echo '<button type="submit" class="btn btn-primary"> Return to form page </button>';
                     echo '</form>';

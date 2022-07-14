@@ -22,7 +22,7 @@ echo $id;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/listPage.js" type="module"></script>
     <title>successfully edited pet info</title>
 </head>
@@ -70,14 +70,14 @@ echo $id;
                     if (($connection->query($sql2) === TRUE) && ($connection->query($sql3) === TRUE)){
                         $sql_pet = "DELETE FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id='$id'";
                         if($connection->query($sql_pet) === TRUE) {
-                            echo '<form action="/listPage.php" method="GET">';
+                            echo '<form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/listPage.php" method="GET">';
                             echo '<h2 class="success">The pet was deleted successfully</h2>';
                             echo '<button type="submit" class="btn btn-primary"> Return to List page </button>';
                             echo '</form>'; 
                         }
                     }
                 } else {
-                    echo '<form action="/addPetPage.php" method="GET">';
+                    echo '<form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/addPetPage.php" method="GET">';
                     echo '<h4 class=success"> An error occured:' . $sql . '<br>' . $connection->error . '</h4>';
                     echo '<button type="submit" class="btn btn-primary"> Return to form page </button>';
                     echo '</form>';

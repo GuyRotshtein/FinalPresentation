@@ -31,11 +31,11 @@ $categories = json_decode($categoryData, true);
                 return
             }
             if (selected.value == '1.png') {
-                imgURL = "/images/upload/1.png";
+                imgURL = "http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/images/upload/1.png";
             } else if (selected.value == '2.png') {
-                imgURL = "/images/upload/2.png";
+                imgURL = "http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/images/upload/2.png";
             } else if (selected.value == '3.png') {
-                imgURL = "/images/upload/3.png";
+                imgURL = "http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/images/upload/3.png";
             } else {
                 imgURL = "";
             }
@@ -79,15 +79,15 @@ $categories = json_decode($categoryData, true);
         </svg>
     </header>
     <nav class="breadCrumbs">
-        <a href="./homePage.php" class="firstBreadCrumb">Home</a>
-        <a href="./listPage.php" class="BreadCrumb">My Pets</a>
-        <a href="./objectPage.php" class="BreadCrumb"><?php echo $row["pet_name"];?></a>
+        <a href="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/homePage.php" class="firstBreadCrumb">Home</a>
+        <a href="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/listPage.php" class="BreadCrumb">My Pets</a>
+        <a href="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/objectPage.php" class="BreadCrumb"><?php echo $row["pet_name"];?></a>
         <a href="#" class="currentBreadCrumb">Edit a pet</a>
     </nav>
     <section>
         <h1 class="formTitle">Edit an existing pet</h1>
         <div id="formWrapper">
-            <form action="/petEdited.php" method="GET">
+            <form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/petEdited.php" method="GET">
             <?php echo '<input type="hidden" name="pet_id" value="'.$row['pet_id'].'">'; ?>
             <?php echo '<input type="hidden" name="old_pic" value="'.$row['picture'].'">'; ?>
             <?php echo '<input type="hidden" name="old_species" value="'.$row['general_species'].'">'; ?>
@@ -131,15 +131,15 @@ $categories = json_decode($categoryData, true);
                         echo '<option value="' . $pic . '.png"> Picture number ' . $pic . ' </option>';
                         ?>
                     </select>
-                    <span> <img id="PetImg" src=<?php echo '"/images/upload/' . $row["picture"] . '"' ?> /></span>
+                    <span> <img id="PetImg" src=<?php echo '"http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/images/upload/' . $row["picture"] . '"' ?> /></span>
                 </div>
                 <button type="submit" class="btn btn-primary">Confirm</button>
             </form>
-            <form action="/objectPage.php" method="GET">
+            <form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/objectPage.php" method="GET">
                 <?php echo '<input type="hidden" name="pet_id" value="'.$row['pet_id'].'">'; ?>
                 <button type="submit" class="btn btn-primary">Cancel edits</button>
             </form>
-            <form action="/deletePet.php" method="GET">
+            <form action="http://se.shenkar.ac.il/students/2021-2022/web1/dev_218/deletePet.php" method="GET">
                 <?php echo '<input type="hidden" name="pet_id" value="'.$row['pet_id'].'">'; ?>
                 <button type="submit" class="deleteButton" class="btn btn-primary">Delete <?php echo $row['pet_name']; ?></button>
             </form>
