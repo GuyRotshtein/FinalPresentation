@@ -85,7 +85,7 @@
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
-            <a href="logout.php">Log Out</a>
+            <a href="logout.php">Log out</a>
         </nav>
         <input class="searchInput" type="text" placeholder="Search" />
         <svg class="menuHumburger" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

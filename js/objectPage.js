@@ -338,5 +338,5 @@ const addOwners = (ownerNames) => {
 };
 const ownerData = [`idan`, `guy`, `mohamad`, `bob`];
 addOwners(ownerData);
-addEvent(`tasks`, data, `my ass`);
+addEvent(`tasks`, data, `mark as done`);
 //tasks, status
