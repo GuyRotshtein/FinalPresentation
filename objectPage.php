@@ -5,12 +5,45 @@ include "config.php";
 session_start();
 header("Cache-Control: no-cache, no-store", true);
 
-if(!isset($_SESSION["owner_id"])){header('Location: index.php');}
+if (!isset($_SESSION["owner_id"])) {
+    header('Location: index.php');
+}
 
-if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
+if (!isset($_GET['pet_id'])) {
+    header('Location: listPage.php');
+}
 $id = $_GET['pet_id'];
 
 $query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id = " . $id;
+
+$events_query = "SELECT * 
+    FROM dbShnkr22studWeb1.tbl_218_event 
+    INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets
+    ON dbShnkr22studWeb1.tbl_218_event.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+    INNER JOIN dbShnkr22studWeb1.tbl_218_pet
+    ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+    INNER JOIN dbShnkr22studWeb1.tbl_218_owner
+    ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
+    AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =" . $_SESSION['owner_id'];
+
+$events_result = mysqli_query($connection, $events_query);
+
+// get data for replacement 
+$replacement_query = "SELECT * 
+    FROM dbShnkr22studWeb1.tbl_218_replacement 
+    INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets
+    ON dbShnkr22studWeb1.tbl_218_replacement.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+    INNER JOIN dbShnkr22studWeb1.tbl_218_pet
+    ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+    INNER JOIN dbShnkr22studWeb1.tbl_218_owner
+	ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
+    AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =" . $_SESSION['owner_id'];
+
+$replacement_result = mysqli_query($connection, $replacement_query);
+
+if (!$events_result || !$replacement_result || !$details_result) {
+    die("DB connect faild!");
+}
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_array($result);
 ?>
@@ -25,6 +58,7 @@ $row = mysqli_fetch_array($result);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>ManaPet - pet page</title>
+    <script defer src="./js/listPage.js" type="module"></script>
     <script defer src="./js/objectPage.js" type="module"></script>
 </head>
 
@@ -161,6 +195,6 @@ $row = mysqli_fetch_array($result);
 
 </html>
 <?php
-    //close DB connection
-    mysqli_close($connection);
+//close DB connection
+mysqli_close($connection);
 ?>

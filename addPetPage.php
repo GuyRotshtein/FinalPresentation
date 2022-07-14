@@ -13,19 +13,39 @@ $query =    'SELECT *
             AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id = '.$_SESSION['owner_id'].'';       
 
 $result = mysqli_query($connection, $query);
-while ($row = mysqli_fetch_assoc($result))
-{
-    echo $row['pet_name'].' '.'</br>';
-    echo $row['pet_id'].' '.'</br>';
-    echo $row['age'].' '.'</br>';
-}
+$row = mysqli_fetch_assoc($result);
 
+$categoryData = file_get_contents("./localData/categories.json",1);
+$categories = json_decode($categoryData,true);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <script>
+    function renderImage(){
+    var selected = document.getElementById("inputPetPicture");
+    var imgURL="";
+    console.log(selected.value)
+    if (!selected || !selected.value){
+        console.log("oops")
+        return
+    }
+    if(selected.value == '1.png'){
+        imgURL = "/images/upload/1.png";
+    } else if(selected.value == '2.png'){
+        imgURL = "/images/upload/2.png";
+    } else if(selected.value == '3.png'){
+        imgURL = "/images/upload/3.png";
+    } else {
+        imgURL = "";
+    }
+    console.log("Image URL: "+imgURL)
+    document.getElementById("PetImg").src = imgURL;
+};
+
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +56,7 @@ while ($row = mysqli_fetch_assoc($result))
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script defer src="./js/javascript.js" type="module"></script>
+    <script defer src="./js/addPetPage.js" type="module"></script>
     <title>ManaPet - add a new pet</title>
 </head>
 
@@ -68,7 +88,8 @@ while ($row = mysqli_fetch_assoc($result))
         <a href="./listPage.php" class="BreadCrumb">My Pets</a>
         <a href="#" class="currentBreadCrumb">Add a pet</a>
     </nav>
-
+ 
+<!--
     <div class="humburger">
         <div class="information">
             <img src="./images/greg.png" alt="">
@@ -90,28 +111,47 @@ while ($row = mysqli_fetch_assoc($result))
             <span>|</span>
             <a href="#">Support</a>
         </div>
-    </div> 
+    </div>
+-->
 
     <section>
         <h1 class="formTitle">Add a new pet</h1>
         <div id="formWrapper">
         <form action="/petCreated.php" method="GET">
             <div class="form-group">
-              <label for="exampleInputEmail1">Name</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="petName" aria-describedby="emailHelp" placeholder="Enter pet name" required autocomplete="off">
+              <label for="inputName">Name</label>
+              <input type="text" class="form-control" id="inputName" name="petName" aria-describedby="emailHelp" placeholder="Enter pet name" required autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Species</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" name="species" placeholder="Enter pet species" required autocomplete="off">
+              <label for="inputGeneralSpecies">General pet species</label>
+              <select class="form-control" id="inputGeneralSpecies" name="generalSpecies" placeholder="Select from dropdown">
+                <option hidden disabled selected value> Choose from dropdown </option>
+                <?php 
+                    foreach($categories['Species'] as $option)
+                    echo '<option value="'. $option . '"> '. $option.' </option>';
+                ?>
+              </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Age</label>
-                <input type="number" class="form-control" id="exampleInputPassword1" name="age" placeholder="Enter pet age" required autocomplete="off">
+              <label for="inputSpecies">Species</label>
+              <input type="text" class="form-control" id="inputSpecies" name="species" placeholder="Enter pet species" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="inputAge">Age</label>
+                <input type="date" class="form-control" id="inputAge" name="age" placeholder="Enter pet age" required autocomplete="off">
             </div>                
-            <label>Profile Picture</label>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
-                <label class="custom-file-label" for="inputGroupFile03">Choose pet picture</label>
+            <div class="form-group">
+                <label for="inputPetPicture">Pet Picture</label>
+                <select class="form-control" id="inputPetPicture" onchange="renderImage()" name="petPicture" autocomplete="off">
+                <?php 
+                    echo '
+                        <option hidden disabled selected value> Choose from dropdown </option>
+                    ';
+                    foreach($categories['Images'] as $pic)
+                    echo '<option value="'. $pic . '.png"> Picture number '. $pic.' </option>';
+                ?>
+              </select>
+              <span> <img id="PetImg" src="/images/icons/camera_1.png"> </span>
             </div>
             <button type="submit" class="btn btn-primary">Add</button>
           </form>

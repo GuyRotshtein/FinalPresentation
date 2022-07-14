@@ -3,4 +3,3 @@ import {setClock} from "./utils.js";
 myHeader('listPage')
 setClock()
 
-const test =()=> console.log('woop')

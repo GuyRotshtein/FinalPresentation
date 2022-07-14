@@ -7,11 +7,16 @@ header("Cache-Control: no-cache, no-store", true);
 if(!isset($_SESSION["owner_id"])){
     header('Location: index.php');
 }
-//(SELECT * FROM dbShnkr22studWeb1.tbl_218_owners_pets WHERE owner_id='.$_SESSION["owner_id"].')
-$query = 'SELECT * FROM dbShnkr22studWeb1.tbl_218_pet LEFT JOIN dbShnkr22studWeb1.tbl_218_owners_pets ON dbShnkr22studWeb1.tbl_218_pet.pet_id = (SELECT * FROM dbShnkr22studWeb1.tbl_218_owners_pets WHERE owner_id='.$_SESSION["owner_id"].')';
+
+$query =    'SELECT * 
+            FROM dbShnkr22studWeb1.tbl_218_pet 
+            RIGHT JOIN dbShnkr22studWeb1.tbl_218_owners_pets
+            ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+            AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id = '.$_SESSION['owner_id'].'';       
+
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
-echo $row['pet_name'];
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +33,7 @@ echo $row['pet_name'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script defer src="./js/javascript.js" type="module"></script>
+    <script defer src="./js/addPetPage.js" type="module"></script>
     <title>ManaPet - add a new pet</title>
 </head>
 
@@ -40,7 +45,7 @@ echo $row['pet_name'];
         <div class="statusBox">
             <span class="clockWidget">time</span>
             <br>
-            <span class="timeWidget">good time, user</span>
+            <span class="timeWidget">good time, user</span><span class="nameWidget">owo</span>
             <img src="./images/greg.png">
         </div>
         <nav>
@@ -60,7 +65,7 @@ echo $row['pet_name'];
         <a href="./listPage.php" class="BreadCrumb">My Pets</a>
         <a href="#" class="currentBreadCrumb">Add a pet</a>
     </nav>
-
+<!-- 
     <div class="humburger">
         <div class="information">
             <img src="./images/greg.png" alt="">
@@ -82,7 +87,7 @@ echo $row['pet_name'];
             <span>|</span>
             <a href="#">Support</a>
         </div>
-    </div> 
+    </div>  -->
 
     <section>
         <h1 class="formTitle">Add a new event</h1>

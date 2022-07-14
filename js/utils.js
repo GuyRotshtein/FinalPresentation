@@ -6,8 +6,8 @@ const setClock = (user = `user`) => {
     document.getElementsByClassName("clockWidget")[0].innerHTML = `${addZero(
       time.getHours()
     )}:${addZero(time.getMinutes())}`;
-    if (time.getHours() < 12) clockWidget.innerHTML = `Good Morning, ${user}`;
-    if (time.getHours() > 12) clockWidget.innerHTML = `Good Evening, ${user}`;
+    if (time.getHours() < 12) clockWidget.innerHTML = `Good Morning, `;
+    if (time.getHours() > 12) clockWidget.innerHTML = `Good Evening, `;
   };
 
 export { addZero, setClock };

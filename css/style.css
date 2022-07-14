@@ -120,6 +120,17 @@ header h4 {
     font-weight: bold;
 }
 
+.nameWidget {
+    position: relative;
+    width: 162px;
+    text-align: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
 .statusBox img {
     position: absolute;
     right: 0px;
@@ -183,11 +194,12 @@ header input::placeholder {
 }
 
 #petListBackground {
-    position: absolute;
+    position: relative;
     top: 190px;
     margin-left: 5%;
     margin-right: auto;
-    height: 527px;
+    height: auto;
+    min-height: 527px;
     width: 90%;
     background-color: #c2dcd9;
 }
@@ -242,9 +254,11 @@ header input::placeholder {
 }
 
 #petList {
-    position: absolute;
-    top: 58px;
-    height: 465px;
+    position: relative;
+    padding-top: 58px !important;
+    padding-bottom: 5px !important;
+    height: auto;
+    min-height: 465px;
     width: 98.46%;
     flex-wrap: wrap;
     padding: 3px 0.7%;
@@ -876,6 +890,10 @@ h3 {
 
 .todayTaskColor {
     color: #ffa834;
+}
+
+.regularTaskColor {
+    color: black;
 }
 
 .newEvent .taskBackdrop {
@@ -1904,4 +1922,32 @@ h3 {
     background-color: #368d82;
     border-color: #368d82;
     font-size: larger;
+}
+
+.eventFormWrapper h2 {
+    width: auto;
+    margin: 25px auto;
+    color: white;
+    text-align: center;
+}
+
+.eventFormWrapper h4 {
+    width: auto;
+    margin: 25px auto;
+    color: white;
+    text-align: center;
+}
+
+.form-group span {
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
+#PetImg{
+    position: relative;
+    height: 200px;
+    width: auto;
+    margin: 20px auto;
+    border-radius: 100px;
 }

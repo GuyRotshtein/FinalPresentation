@@ -1,8 +1,10 @@
 <?php
 session_start();
-header("Cache-Control: no-cache, no-store", true);
+include "db.php";
+include "config.php";
 
-if(!isset($_SESSION["owner_id"])){
+header("Cache-Control: no-cache, no-store", true);
+if (!isset($_SESSION["owner_id"])) {
     header('Location: index.php');
 }
 ?>
@@ -12,10 +14,11 @@ if(!isset($_SESSION["owner_id"])){
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/style.css">
-    <script defer src="./js/javascript.js" type="module"></script>
+    <script defer src="./js/listPage.js" type="module"></script>
     <title>successfully added new pet</title>
 </head>
 
@@ -31,8 +34,8 @@ if(!isset($_SESSION["owner_id"])){
             <img src="./images/greg.png">
         </div>
         <nav>
-            <a href="./index.html">Home Page</a>
-            <a href="./listPage.html" class="selected">My Pets</a>
+            <a href="./homePage.php">Home Page</a>
+            <a href="./listPage.php" class="selected">My Pets</a>
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
@@ -48,21 +51,47 @@ if(!isset($_SESSION["owner_id"])){
         <a href="#" class="currentBreadCrumb">Pet added</a>
     </nav>
     <section>
-        <h1 class="success">Pet was added successfully</h1>
-        <?php
-        $pet_name = $_GET["petName"];
-        $species = $_GET["species"];
-        $age = $_GET["age"];
+        <div class="eventFormWrapper">
+                <?php
+                $pet_name = $_GET["petName"];
+                $species = $_GET["species"];
+                $age = $_GET["age"];
+                $picture = $_GET["petPicture"];
 
-        echo "<h1>Name: " . $pet_name .  "</h1><br>";
-        echo "<h3>Species: " . $species .  "</h3><br>";
-        echo "<h3>Age: " . $age .  "</h3><br>";
-        ?>
+                $sql = "INSERT INTO dbShnkr22studWeb1.tbl_218_pet (pet_name,picture,species,age)
+                VALUES ('$pet_name','$picture','$species','$age')";
+
+                $owner_id = $_SESSION["owner_id"];
+                $sql11=  "SELECT LAST_INSERT_ID() AS ID";
+                
+                if ($connection->query($sql) === TRUE) {
+                    $result= $connection->query($sql11);
+                    
+                    $pet_id = mysqli_fetch_assoc($result)['ID'];
+
+                    $sql2 = "INSERT INTO dbShnkr22studWeb1.tbl_218_owners_pets (owner_id,pet_id)
+                    VALUES ('$owner_id','$pet_id')";
+                    if($connection->query($sql2) === TRUE)
+                    {
+                        echo '<form action="/listPage.php" method="GET">';
+                        echo '<h2 class="success">' . $pet_name . ' was added successfully</h2>';
+                        echo '<button type="submit" class="btn btn-primary"> Return to List page </button>';
+                        echo '</form>'; 
+                    }
+                } else {
+                    echo '<form action="/addPetPage.php" method="GET">';
+                    echo '<h4 class=success"> An error occured:' . $sql . '<br>' . $connection->error . '</h4>';
+                    echo '<button type="submit" class="btn btn-primary"> Return to form page </button>';
+                    echo '</form>';
+                }
+                ?>
+            </form>
+        </div>
     </section>
 </body>
 
 </html>
 <?php
-    //close DB connection
-    mysqli_close($connection);
+//close DB connection
+mysqli_close($connection);
 ?>

@@ -8,10 +8,14 @@ if(!isset($_SESSION["owner_id"])){
     header('Location: index.php');
 }
 
-$query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id = '1'";
-global $result, $row;
+$query =    'SELECT * 
+            FROM dbShnkr22studWeb1.tbl_218_pet 
+            INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets
+            ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
+            AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id = '.$_SESSION['owner_id'].'';       
+
 $result = mysqli_query($connection, $query);
-$row = mysqli_fetch_array($result);
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +28,8 @@ $row = mysqli_fetch_array($result);
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title>ManaPet - My pets</title>
-    <script defer src="./js/javascript.js" type="module"></script>
+    <script defer src="./js/listPage.js" type="module">test()</script>
+    </script>   
 </head>
 
 <body>
@@ -35,8 +40,8 @@ $row = mysqli_fetch_array($result);
         <div class="statusBox">
             <span class="clockWidget">time</span>
             <br>
-            <span class="timeWidget">good day, user</span>
-            <?php echo '<img src="./images/users/' . $_SESSION["owner_id"] . '/' . $_SESSION["imge"] . '"/>'; ?>
+            <span class="timeWidget">good day, </span>
+            <?php echo '<img src="./images/users/' . $_SESSION["owner_id"] . '/' . $_SESSION["imge"] . '" alt="Profile picture"/>'; ?>
         </div>
         <nav>
             <a href="./homePage.php">Home Page</a>
@@ -85,52 +90,63 @@ $row = mysqli_fetch_array($result);
             <h3>Task status</h3>
         </article>
         <div id="petList">
-            <form action="./objectPage.php" method="GET">
-                <?php echo'<input type="hidden" name="Pet_id" value="'.$row['pet_id'].'">'; ?>
-                <?php echo '<a class="petEntry" href="./objectPage.php?pet_id='.$row['pet_id'].'">'; ?>
-                    <div class="entryBackground"></div>
-                    <div class="petEntryLogistic">
-                        <span>
-                            Kibble 25kg food bag <br />
-                            in: 3 days
-                        </span>
-                    </div>
-                    <div class="petEntryName">
-                        <?php echo '<img src="/images/pets/' . $row['pet_id'] . '/' . $row['picture'] . '"/>'; ?>
-                        <span>
-                            <?php if (isset($row['pet_name'])) {
-                                echo $row['pet_name'];
-                            } else {
-                                echo "ERROR";
-                            } ?>
-                        </span>
-                    </div>
-                    <div class="petEntryStatus">
-                        <div>
-                            <img src="./images/icons/Error_Icon_1.png">
-                            <span class="missedTaskColor">Task missed !</span>
-                        </div>
-                        <div>
-                            <img src="./images/icons/Notification_Important_Icon_1.png">
-                            <span class="todayTaskColor">Close Task</span>
-                        </div>
-                    </div>
-                </a>
-            </form>
+            <?php 
+            // add loop w/ row
+            while($row = mysqli_fetch_assoc($result)) {
+                echo '
+                        <form action="./objectPage.php" method="GET">
+                            <input type="hidden" name="Pet_id" value="'.$row['pet_id'].'">
+                            <a class="petEntry" href="./objectPage.php?pet_id='.$row['pet_id'].'">
+                                <div class="entryBackground"></div>
+                                <div class="petEntryLogistic">
+                                    <span>
+                                        Kibble 25kg food bag <br />
+                                        in: 3 days
+                                    </span>
+                                </div>
+                                <div class="petEntryName">
+                                    <img src="/images/upload/'. $row['picture'] .'"/>
+                                    <span>
+                                        ' . $row['pet_name'] . '
+                                    </span>
+                                 </div>
+                                <div class="petEntryStatus">';
+                // add a missed task check
+                if ($row['age'] === 0) {
+                echo '
+                                    <div>
+                                        <img src="./images/icons/Error_Icon_1.png">
+                                        <span class="missedTaskColor">Task missed !</span>
+                                    </div>
+                ';
+                }
+                // add a close task check
+                if ($row['age'] === 0) {
+                    echo '
+                                        <div>
+                                            <img src="./images/icons/Notification_Important_Icon_1.png">
+                                            <span class="todayTaskColor">Close Task</span>
+                                        </div>
+                ';
+                } else {
+                    echo '
+                                        <div>
+                                            <img src="./images/icons/Clock_Icon_1.png">
+                                            <span class="regularTaskColor">No Close tasks</span>
+                                        </div>
+                ';
+                }
+                echo '
+                                </div>
+                            </a>
+                        </form>
+                ';
+            }
+            ?>
             <!-- Pets here! -->
             <div class="addEntry" href="#">
                 <a href="./addPetPage.php"><img src="./images/icons/Add_an_essential_1.png"></a>
             </div>
-
-            <div class="emptyEntry"></div>
-
-            <div class="emptyEntry"></div>
-
-            <div class="emptyEntry"></div>
-
-            <div class="emptyEntry"></div>
-
-            <div class="emptyEntry"></div>
         </div>
     </div>
 </body>

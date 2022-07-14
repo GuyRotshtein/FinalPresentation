@@ -1,18 +1,18 @@
 <?php 
     include "db.php";
-
+    
     session_start();
-header("Cache-Control: no-cache, no-store", true);
-
-if(!isset($_SESSION["owner_id"])){
-    header('Location: index.php');
-}
+    header("Cache-Control: no-cache, no-store", true);
+    
+    if(!isset($_SESSION["owner_id"])){
+        header('Location: index.php');
+    }
 
     //get user 
     $details_owner = "SELECT * FROM dbShnkr22studWeb1.tbl_218_owner WHERE owner_id = ". $_SESSION['owner_id'];
     $details_result = mysqli_query($connection, $details_owner);
     $details = mysqli_fetch_assoc($details_result);
-    
+
     if(!$details["imge"]){
         $imge = "defaultUser.jpg";
     }else{
@@ -31,7 +31,7 @@ if(!isset($_SESSION["owner_id"])){
     AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =". $_SESSION['owner_id'];
 
     $events_result = mysqli_query($connection, $events_query);
-   
+    
     // get data for replacement 
     $replacement_query = "SELECT * 
     FROM dbShnkr22studWeb1.tbl_218_replacement 
@@ -42,12 +42,12 @@ if(!isset($_SESSION["owner_id"])){
     INNER JOIN dbShnkr22studWeb1.tbl_218_owner
 	ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
     AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =" . $_SESSION['owner_id'];
-    
+
     $replacement_result = mysqli_query($connection, $replacement_query);
 
     if(!$events_result || !$replacement_result || !$details_result){
          die("DB connect faild!");
-    }        
+    }else     
 
 ?>
 
@@ -63,7 +63,7 @@ if(!isset($_SESSION["owner_id"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <title>ManaPet - Home</title>
-    <script defer src="./js/homePage.js" type="module"></script>
+    <script defer src="./js/javascript.js" type="module"></script>
 </head>
 
 <body>
@@ -85,6 +85,7 @@ if(!isset($_SESSION["owner_id"])){
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
+            <a href="logout.php">Log Out</a>
         </nav>
         <input class="searchInput" type="text" placeholder="Search" />
         <svg class="menuHumburger" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -116,7 +117,7 @@ if(!isset($_SESSION["owner_id"])){
             <a href="#">Support</a>
         </div>
     </div> -->
-
+    
     <section>
         <!-- Up Coming Events -->
         <div class="upComingEvents">
@@ -183,9 +184,7 @@ if(!isset($_SESSION["owner_id"])){
         </div>
     </section>
 </body>
-
 </html>
-
 <?php
     //close DB connection
     mysqli_close($connection);
