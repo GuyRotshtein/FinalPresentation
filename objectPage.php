@@ -10,6 +10,11 @@ if(!isset($_SESSION["owner_id"])){header('Location: index.php');}
 if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
 $id = $_GET['pet_id'];
 
+//get user 
+$details_owner = "SELECT * FROM dbShnkr22studWeb1.tbl_218_owner WHERE owner_id = ". $_SESSION['owner_id'];
+$details_result = mysqli_query($connection, $details_owner);
+$details = mysqli_fetch_assoc($details_result);
+
 $query = "SELECT * 
 FROM dbShnkr22studWeb1.tbl_218_owner 
 RIGHT JOIN dbShnkr22studWeb1.tbl_218_owners_pets
@@ -23,7 +28,14 @@ $result1 = mysqli_query($connection, $query1);
 
 $row1 = mysqli_fetch_array($result1);
 
-if(!$result){
+
+if(!$row1["picture"]){
+    $imge = "defaultPet.png";
+}else{
+    $imge = $row1["picture"];
+}
+
+if(!$result || !$result){
     die("DB query faild!");
 }
 
@@ -40,7 +52,7 @@ if(!$result){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>ManaPet - pet page</title>
-    <script defer src="./js/objectPage.js" type="module"></script>
+    <script src="./js/loginPage.js" type="module"></script>
 </head>
 
 <body>
@@ -49,9 +61,9 @@ if(!$result){
         <h1>ManaPet</h1>
         <h4 class="brudCrumbs">Your logistics assistant for the pet's daily life</h4>
         <div class="statusBox">
-            <span class="clockWidget">time</span>
+            <span class="clockWidget"></span>
             <br>
-            <span class="timeWidget">good time, user</span>
+            <span class="timeWidget"></span></br><?php echo '<span class="ownerName">'.$details["name"].'</span>'?>
             <img src="./images/greg.png">
         </div>
         <nav>
@@ -69,11 +81,11 @@ if(!$result){
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
         <a href="./listPage.php" class="BreadCrumb">My Pets</a>
-        <a href="#" class="BreadCrumb"><?php echo $row1["pet_name"];?></a>
-        <a href="#" class="currentBreadCrumb">Pet Page</a>
+        <a href="objectPage.php?pet_id=<?php echo $id?>" class="BreadCrumb"><?php echo $row1["pet_name"];?></a>
+        <a  href="objectPage.php?pet_id=<?php echo $id?>" class="currentBreadCrumb">Pet Page</a>
     </nav>
 
-    <div class="humburger">
+    <!-- <div class="humburger">
         <div class="information">
             <img src="./images/greg.png" alt="">
             <h3>Greg</h3>
@@ -93,13 +105,13 @@ if(!$result){
             <span>|</span>
             <a href="#">Support</a>
         </div>
-    </div>
+    </div> -->
     <section>
 
         <!--    Pet information    -->
         <div class="info">
             <div>
-                <img class="profilePic" src="./images/Barkley_picture_1.png">
+                <img class="profilePic" src="/images/<?php echo $imge; ?>">
                 <img class="cameraIcon" src="./images/Camera_Alt_Icon_1.png" alt="">
                 <input type="file">
             </div>
