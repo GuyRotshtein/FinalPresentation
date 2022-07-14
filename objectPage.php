@@ -7,8 +7,9 @@ header("Cache-Control: no-cache, no-store", true);
 
 if(!isset($_SESSION["owner_id"])){header('Location: index.html');}
 
-if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
+
 $id = $_GET['pet_id'];
+if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
 
 $query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id = " . $id;
 
@@ -88,7 +89,7 @@ if(!$result_owners || !$result_events){
 <nav class="breadCrumbs">
     <a href="./homePage.php" class="firstBreadCrumb">Home</a>
     <a href="./listPage.php" class="BreadCrumb">My Pets</a>
-    <a href="objectPage.php?pet_id=<?php echo $id?>" class="BreadCrumb">Sir Barkley</a>
+    <a href="objectPage.php?pet_id=<?php echo $id?>" class="BreadCrumb"><?php echo $row["pet_name"]?></a>
     <a href="objectPage.php?pet_id=<?php echo $id?>" class="currentBreadCrumb">Pet Page</a>
 </nav>
 
@@ -129,6 +130,7 @@ if(!$result_owners || !$result_events){
                 <h5>Age: Born in '.$row["age"].'</h5>
                 <br>
                 <form action="/editPetPage.php" method="GET">
+                <input type="hidden" name="pet_id" value="'.$row['pet_id'].'">
                 <button type="submit" class = "petEdit">Edit pet</button>
                 </form>
                 '; ?>      

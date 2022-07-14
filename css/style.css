@@ -1981,3 +1981,22 @@ h3 {
 .petEdit:hover {
     color: #fff;
 }
+
+.deleteButton{
+    display: inline-block;
+    user-select: none;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    margin-top: 15px;
+    font-size: larger;
+    color: white;
+    background-color: #BD362F;
+    border-color: #BD362F;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

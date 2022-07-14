@@ -7,6 +7,11 @@ header("Cache-Control: no-cache, no-store", true);
 if (!isset($_SESSION["owner_id"])) {
     header('Location: index.html');
 }
+
+
+$id = $_GET['pet_id'];
+
+echo $id;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +24,7 @@ if (!isset($_SESSION["owner_id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/style.css">
     <script defer src="./js/listPage.js" type="module"></script>
-    <title>successfully added new pet</title>
+    <title>successfully edited pet info</title>
 </head>
 
 <body>
@@ -49,36 +54,27 @@ if (!isset($_SESSION["owner_id"])) {
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
         <a href="./listPage.php" class="BreadCrumb">My Pets</a>
-        <a href="#" class="currentBreadCrumb">Pet added</a>
+        <a href="#" class="currentBreadCrumb">Edited</a>
     </nav>
     <section>
         <div class="eventFormWrapper">
                 <?php
-                $pet_name = $_GET["petName"];
-                $species = $_GET["species"];
-                $age = $_GET["age"];
-                $picture = $_GET["petPicture"];
-                $general_species = $_GET["generalSpecies"];
+                // delete from owner pets
+                // 2 - delete all from tasks
+                // 3 -delete all from logistics
 
-                $sql = "INSERT INTO dbShnkr22studWeb1.tbl_218_pet (pet_name,picture,species,age, general_species)
-                VALUES ('$pet_name','$picture','$species','$age', '$general_species')";
-
-                $owner_id = $_SESSION["owner_id"];
-                $sql11=  "SELECT LAST_INSERT_ID() AS ID";
-                
+                $sql = "DELETE FROM dbShnkr22studWeb1.tbl_218_owners_pets WHERE pet_id='$id'";
                 if ($connection->query($sql) === TRUE) {
-                    $result= $connection->query($sql11);
-                    
-                    $pet_id = mysqli_fetch_assoc($result)['ID'];
-
-                    $sql2 = "INSERT INTO dbShnkr22studWeb1.tbl_218_owners_pets (owner_id,pet_id)
-                    VALUES ('$owner_id','$pet_id')";
-                    if($connection->query($sql2) === TRUE)
-                    {
-                        echo '<form action="/listPage.php" method="GET">';
-                        echo '<h2 class="success">' . $pet_name . ' was added successfully</h2>';
-                        echo '<button type="submit" class="btn btn-primary"> Return to List page </button>';
-                        echo '</form>'; 
+                    $sql2 = "DELETE FROM dbShnkr22studWeb1.tbl_218_event WHERE pet_id='$id'";
+                    $sql3 = "DELETE FROM dbShnkr22studWeb1.tbl_218_replacement WHERE pet_id='$id'";
+                    if (($connection->query($sql2) === TRUE) && ($connection->query($sql3) === TRUE)){
+                        $sql_pet = "DELETE FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id='$id'";
+                        if($connection->query($sql_pet) === TRUE) {
+                            echo '<form action="/listPage.php" method="GET">';
+                            echo '<h2 class="success">The pet was deleted successfully</h2>';
+                            echo '<button type="submit" class="btn btn-primary"> Return to List page </button>';
+                            echo '</form>'; 
+                        }
                     }
                 } else {
                     echo '<form action="/addPetPage.php" method="GET">';

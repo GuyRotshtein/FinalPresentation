@@ -5,11 +5,10 @@ header("Cache-Control: no-cache, no-store", true);
 if (!isset($_SESSION["owner_id"])) {
     header('Location: index.html');
 }
-$query =    'SELECT * 
-            FROM dbShnkr22studWeb1.tbl_218_pet 
-            RIGHT JOIN dbShnkr22studWeb1.tbl_218_owners_pets
-            ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
-            AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id = ' . $_SESSION['owner_id'] . '';
+
+$id = $_GET['pet_id'];
+
+$query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id = " . $id;
 
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
@@ -24,8 +23,8 @@ $categories = json_decode($categoryData, true);
 <head>
     <script>
         function renderImage() {
-            var selected = document.getElementById("inputPetPicture");
-            var imgURL = "";
+            const selected = document.getElementById("inputPetPicture");
+            let imgURL = "";
             console.log(selected.value)
             if (!selected || !selected.value) {
                 console.log("oops")
@@ -82,20 +81,24 @@ $categories = json_decode($categoryData, true);
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
         <a href="./listPage.php" class="BreadCrumb">My Pets</a>
+        <a href="./objectPage.php" class="BreadCrumb"><?php echo $row["pet_name"];?></a>
         <a href="#" class="currentBreadCrumb">Edit a pet</a>
     </nav>
     <section>
         <h1 class="formTitle">Edit an existing pet</h1>
         <div id="formWrapper">
             <form action="/petEdited.php" method="GET">
+            <?php echo '<input type="hidden" name="pet_id" value="'.$row['pet_id'].'">'; ?>
+            <?php echo '<input type="hidden" name="old_pic" value="'.$row['picture'].'">'; ?>
+            <?php echo '<input type="hidden" name="old_species" value="'.$row['general_species'].'">'; ?>
                 <div class="form-group">
                     <label for="inputName">Name</label>
                     <input type="text" class="form-control" id="inputName" name="petName" aria-describedby="emailHelp" placeholder="Enter pet name" required autocomplete="off" value=<?php echo '"' . $row["pet_name"] . '"' ?>>
                 </div>
                 <div class="form-group">
                     <label for="inputGeneralSpecies">General pet species</label>
-                    <select class="form-control" id="inputGeneralSpecies" name="generalSpecies" placeholder="Select from dropdown" value=<?php echo '"' . $row["general_species"] . '"' ?>>
-                        <option hidden disabled value></option>
+                    <select class="form-control" id="inputGeneralSpecies" name="generalSpecies" placeholder="Select from dropdown" >
+                        <option hidden disabled selected value> <?php echo $row["general_species"]; ?> </option>
                         <?php
                         foreach ($categories['Species'] as $option)
                             echo '<option value="' . $option . '"> ' . $option . ' </option>';
@@ -112,20 +115,34 @@ $categories = json_decode($categoryData, true);
                 </div>
                 <div class="form-group">
                     <label for="inputPetPicture">Pet Picture</label>
-                    <select class="form-control" id="inputPetPicture" onchange="renderImage()" name="petPicture" autocomplete="off" value=<?php echo '"' . $row["general_species"] . '"' ?>>
+                    <select class="form-control" id="inputPetPicture" onchange="renderImage()" name="petPicture" autocomplete="off" value=<?php echo '"' . $row["picture"] . '"' ?>>
+                        <option hidden disabled selected value> <?php 
+                                                                if ($row["picture"] == '1.png') {
+                                                                    echo "Picture number 1";
+                                                                } else if ($row["picture"] == '2.png') {
+                                                                    echo "Picture number 2";
+                                                                } else if ($row["picture"] == '3.png') {
+                                                                    echo "Picture number 3";
+                                                                } else {
+                                                                    echo $row["picture"];
+                                                                } ?> </option>
                         <?php
-                        echo '
-                        <option hidden disabled value></option>
-                    ';
                         foreach ($categories['Images'] as $pic)
-                            echo '<option value="' . $pic . '.png"> Picture number ' . $pic . ' </option>';
+                        echo '<option value="' . $pic . '.png"> Picture number ' . $pic . ' </option>';
                         ?>
                     </select>
                     <span> <img id="PetImg" src=<?php echo '"/images/upload/' . $row["picture"] . '"' ?> /></span>
                 </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Confirm</button>
             </form>
-            <form action="/petEdited.php" method="GET">
+            <form action="/objectPage.php" method="GET">
+                <?php echo '<input type="hidden" name="pet_id" value="'.$row['pet_id'].'">'; ?>
+                <button type="submit" class="btn btn-primary">Cancel edits</button>
+            </form>
+            <form action="/deletePet.php" method="GET">
+                <?php echo '<input type="hidden" name="pet_id" value="'.$row['pet_id'].'">'; ?>
+                <button type="submit" class="deleteButton" class="btn btn-primary">Delete <?php echo $row['pet_name']; ?></button>
+            </form>
         </div>
     </section>
 

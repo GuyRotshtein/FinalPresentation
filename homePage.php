@@ -7,7 +7,6 @@ header("Cache-Control: no-cache, no-store", true);
 if(!isset($_SESSION["owner_id"])){
     header('Location: index.html');
 }
-
     //get user 
     $details_owner = "SELECT * FROM dbShnkr22studWeb1.tbl_218_owner WHERE owner_id = ". $_SESSION['owner_id'];
     $details_result = mysqli_query($connection, $details_owner);
@@ -18,7 +17,6 @@ if(!isset($_SESSION["owner_id"])){
     }else{
         $imge = $details["imge"];
     }
-
     // get data for events 
     $events_query = "SELECT * 
     FROM dbShnkr22studWeb1.tbl_218_event 
@@ -29,9 +27,7 @@ if(!isset($_SESSION["owner_id"])){
     INNER JOIN dbShnkr22studWeb1.tbl_218_owner
     ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
     AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =". $_SESSION['owner_id'];
-
     $events_result = mysqli_query($connection, $events_query);
-   
     // get data for replacement 
     $replacement_query = "SELECT * 
     FROM dbShnkr22studWeb1.tbl_218_replacement 

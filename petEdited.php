@@ -7,6 +7,11 @@ header("Cache-Control: no-cache, no-store", true);
 if (!isset($_SESSION["owner_id"])) {
     header('Location: index.html');
 }
+
+
+$id = $_GET['pet_id'];
+if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +54,7 @@ if (!isset($_SESSION["owner_id"])) {
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
         <a href="./listPage.php" class="BreadCrumb">My Pets</a>
-        <a href="#" class="currentBreadCrumb">Pet information edited</a>
+        <a href="#" class="currentBreadCrumb">Edited</a>
     </nav>
     <section>
         <div class="eventFormWrapper">
@@ -58,29 +63,22 @@ if (!isset($_SESSION["owner_id"])) {
                 $species = $_GET["species"];
                 $age = $_GET["age"];
                 $picture = $_GET["petPicture"];
+                $general_species = $_GET["generalSpecies"];
+                if(!isset($_GET['petPicture'])){ $picture = $_GET['old_pic'];}
+                if(!isset($_GET['species'])){ $picture = $_GET['old_species'];}
 
-                $sql = "INSERT INTO dbShnkr22studWeb1.tbl_218_pet (pet_name,picture,species,age)
-                VALUES ('$pet_name','$picture','$species','$age')";
+                $sql = "UPDATE dbShnkr22studWeb1.tbl_218_pet 
+                        SET pet_name = '$pet_name', species = '$species', general_species = '$general_species', age = '$age', picture = '$picture'
+                WHERE pet_id = $id";
 
                 $owner_id = $_SESSION["owner_id"];
-                $sql11=  "SELECT LAST_INSERT_ID() AS ID";
-                
                 if ($connection->query($sql) === TRUE) {
-                    $result= $connection->query($sql11);
-                    
-                    $pet_id = mysqli_fetch_assoc($result)['ID'];
-
-                    $sql2 = "INSERT INTO dbShnkr22studWeb1.tbl_218_owners_pets (owner_id,pet_id)
-                    VALUES ('$owner_id','$pet_id')";
-                    if($connection->query($sql2) === TRUE)
-                    {
                         echo '<form action="/listPage.php" method="GET">';
-                        echo '<h2 class="success">' . $pet_name . ' was added successfully</h2>';
+                        echo '<h2 class="success">' . $pet_name . ' had their details updated successfully</h2>';
                         echo '<button type="submit" class="btn btn-primary"> Return to List page </button>';
                         echo '</form>'; 
-                    }
-                } else {
-                    echo '<form action="/addPetPage.php" method="GET">';
+                }else {
+                    echo '<form action="/editPetPage.php" method="GET">';
                     echo '<h4 class=success"> An error occured:' . $sql . '<br>' . $connection->error . '</h4>';
                     echo '<button type="submit" class="btn btn-primary"> Return to form page </button>';
                     echo '</form>';
