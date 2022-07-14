@@ -1968,3 +1968,16 @@ h3 {
 .tableEnd:hover{
     color: #c3ddda !important ;
 }
+
+.petEdit{
+    color: #c3ddda;
+    background-color: #368d82;
+    border-color: #368d82;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 15%;
+}
+
+.petEdit:hover {
+    color: #fff;
+}

@@ -5,7 +5,7 @@
 header("Cache-Control: no-cache, no-store", true);
 
 if(!isset($_SESSION["owner_id"])){
-    header('Location: index.php');
+    header('Location: index.html');
 }
 
     //get user 
@@ -95,7 +95,7 @@ if(!isset($_SESSION["owner_id"])){
         </svg>
     </header>
 
-    <!-- <div class="humburger">
+    <div class="humburger">
         <div class="information">
             <img src="./images/greg.png" alt="" />
             <h3>Greg</h3>
@@ -103,8 +103,8 @@ if(!isset($_SESSION["owner_id"])){
 
         <div class="listMenu">
             <ul>
-                <li class="selectedOnMenu"><a href="./index.html">HomePage</a></li>
-                <li><a href="./Listpage.html">My Pets</a></li>
+                <li class="selectedOnMenu"><a href="./homepage.php">HomePage</a></li>
+                <li><a href="./listPage.php">My Pets</a></li>
                 <li><a href="#">Daily Events</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Logistic</a></li>
@@ -116,7 +116,7 @@ if(!isset($_SESSION["owner_id"])){
             <span>|</span>
             <a href="#">Support</a>
         </div>
-    </div> -->
+    </div>
 
     <section>
         <!-- Up Coming Events -->
@@ -140,7 +140,7 @@ if(!isset($_SESSION["owner_id"])){
                         echo ' <div class="eventContent">';
                         echo '<h5 class="getInfo">' . $event["information"] . '</h5>';
                         echo '</div>';
-                        echo ' <img class="petPicture" src="./images/'.$event["picture"].'" />';
+                        echo ' <img class="petPicture" src="./images/upload/'.$event["picture"].'" />';
                         echo '<h5 class="eventPetName">' .$event["pet_name"] . '</h5>';
                         echo '<span class="taskBackdrop eventTime">';
                         echo '<h5 class="getDate">'. $event["task_deadline"] . '</h5>';
@@ -172,7 +172,7 @@ if(!isset($_SESSION["owner_id"])){
                         echo ' <div class="eventContent">';
                         echo '<h5 class="getInfo">' . $replacement["information"] . '</h5>';
                         echo '</div>';
-                        echo ' <img class="petPicture" src="./images/'.$replacement["picture"] .'" />';
+                        echo ' <img class="petPicture" src="./images/upload/'.$replacement["picture"] .'" />';
                         echo '<h5 class="eventPetName">' .$replacement["pet_name"] . '</h5>';
                         echo '<span class="taskBackdrop eventTime">';
                         echo '<h5 class="getDate">'. 'End in: ' . $replacement["expiration_deadline"] . '</h5>';

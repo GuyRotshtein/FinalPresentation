@@ -3,7 +3,7 @@ include "db.php";
 session_start();
 header("Cache-Control: no-cache, no-store", true);
 if(!isset($_SESSION["owner_id"])){
-    header('Location: index.php');
+    header('Location: index.html');
 }
 
 $query =    'SELECT * 
@@ -151,7 +151,7 @@ $categories = json_decode($categoryData,true);
                     echo '<option value="'. $pic . '.png"> Picture number '. $pic.' </option>';
                 ?>
               </select>
-              <span> <img id="PetImg" src="/images/icons/camera_1.png"> </span>
+              <span> <img id="PetImg" src="/images/upload/defaultPet.png"> </span>
             </div>
             <button type="submit" class="btn btn-primary">Add</button>
         </form >

@@ -19,7 +19,7 @@ if (!isset($_SESSION["owner_id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/style.css">
     <script defer src="./js/listPage.js" type="module"></script>
-    <title>successfully added new pet</title>
+    <title>successfully edited pet info</title>
 </head>
 
 <body>
@@ -49,7 +49,7 @@ if (!isset($_SESSION["owner_id"])) {
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
         <a href="./listPage.php" class="BreadCrumb">My Pets</a>
-        <a href="#" class="currentBreadCrumb">Pet added</a>
+        <a href="#" class="currentBreadCrumb">Pet information edited</a>
     </nav>
     <section>
         <div class="eventFormWrapper">

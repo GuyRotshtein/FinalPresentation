@@ -3,7 +3,7 @@ include "db.php";
 session_start();
 header("Cache-Control: no-cache, no-store", true);
 if (!isset($_SESSION["owner_id"])) {
-    header('Location: index.php');
+    header('Location: index.html');
 }
 $query =    'SELECT * 
             FROM dbShnkr22studWeb1.tbl_218_pet 
@@ -82,7 +82,7 @@ $categories = json_decode($categoryData, true);
     <nav class="breadCrumbs">
         <a href="./homePage.php" class="firstBreadCrumb">Home</a>
         <a href="./listPage.php" class="BreadCrumb">My Pets</a>
-        <a href="#" class="currentBreadCrumb">Add a pet</a>
+        <a href="#" class="currentBreadCrumb">Edit a pet</a>
     </nav>
     <section>
         <h1 class="formTitle">Edit an existing pet</h1>

@@ -5,48 +5,46 @@ include "config.php";
 session_start();
 header("Cache-Control: no-cache, no-store", true);
 
-if (!isset($_SESSION["owner_id"])) {
-    header('Location: index.php');
-}
+if(!isset($_SESSION["owner_id"])){header('Location: index.html');}
 
-if (!isset($_GET['pet_id'])) {
-    header('Location: listPage.php');
-}
+if(!isset($_GET['pet_id'])){header('Location: listPage.php');}
 $id = $_GET['pet_id'];
 
 $query = "SELECT * FROM dbShnkr22studWeb1.tbl_218_pet WHERE pet_id = " . $id;
 
-$events_query = "SELECT *
-    FROM dbShnkr22studWeb1.tbl_218_event
-    INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets
-    ON dbShnkr22studWeb1.tbl_218_event.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
-    INNER JOIN dbShnkr22studWeb1.tbl_218_pet
-    ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
-    INNER JOIN dbShnkr22studWeb1.tbl_218_owner
-    ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
-    AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =" . $_SESSION['owner_id'];
 
-$events_result = mysqli_query($connection, $events_query);
+//get user 
+$details_owner = "SELECT * FROM dbShnkr22studWeb1.tbl_218_owner WHERE owner_id = ". $_SESSION['owner_id'];
+$details_result = mysqli_query($connection, $details_owner);
+$details = mysqli_fetch_assoc($details_result);
 
-// get data for replacement
-$replacement_query = "SELECT *
-    FROM dbShnkr22studWeb1.tbl_218_replacement
-    INNER JOIN dbShnkr22studWeb1.tbl_218_owners_pets
-    ON dbShnkr22studWeb1.tbl_218_replacement.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
-    INNER JOIN dbShnkr22studWeb1.tbl_218_pet
-    ON dbShnkr22studWeb1.tbl_218_pet.pet_id = dbShnkr22studWeb1.tbl_218_owners_pets.pet_id
-    INNER JOIN dbShnkr22studWeb1.tbl_218_owner
-	ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
-    AND dbShnkr22studWeb1.tbl_218_owners_pets.owner_id =" . $_SESSION['owner_id'];
+$query_owners = "SELECT * 
+FROM dbShnkr22studWeb1.tbl_218_owner 
+RIGHT JOIN dbShnkr22studWeb1.tbl_218_owners_pets
+ON dbShnkr22studWeb1.tbl_218_owner.owner_id = dbShnkr22studWeb1.tbl_218_owners_pets.owner_id
+AND dbShnkr22studWeb1.tbl_218_owners_pets.pet_id =" . $id;
 
-$replacement_result = mysqli_query($connection, $replacement_query);
+$query_events = "SELECT * FROM dbShnkr22studWeb1.tbl_218_event 
+RIGHT JOIN dbShnkr22studWeb1.tbl_218_pet 
+ON dbShnkr22studWeb1.tbl_218_event.pet_id = dbShnkr22studWeb1.tbl_218_pet.pet_id
+AND dbShnkr22studWeb1.tbl_218_pet.pet_id =" . $id;
 
-// if (!$events_result || !$replacement_result || !$details_result) {
-//     die("DB connect faild!");
-// }
-
+$result_owners = mysqli_query($connection, $query_owners);
+$result_events = mysqli_query($connection, $query_events);
 $result = mysqli_query($connection, $query);
+$row_events = mysqli_fetch_array($result_events);
 $row = mysqli_fetch_array($result);
+
+if(!$row["picture"]){
+    $row['picture'] = "defaultPet.png";
+}else{
+    $imge = $row["picture"];
+}
+
+if(!$result_owners || !$result_events){
+    die("DB query faild!");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +55,6 @@ $row = mysqli_fetch_array($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>ManaPet - pet page</title>
@@ -81,21 +78,20 @@ $row = mysqli_fetch_array($result);
         <a href="#">Events</a>
         <a href="#">Calendar</a>
         <a href="#">Logistics</a>
+        <a href="logout.php">Log out</a>
     </nav>
     <input class="searchInput" type="text" placeholder="Search">
-    <svg class="menuHumburger" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-         class="bi bi-list" viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        <svg class="menuHumburger" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
     </svg>
 </header>
 <nav class="breadCrumbs">
     <a href="./homePage.php" class="firstBreadCrumb">Home</a>
     <a href="./listPage.php" class="BreadCrumb">My Pets</a>
-    <a href="#" class="BreadCrumb">Sir Barkley</a>
-    <a href="#" class="currentBreadCrumb">Pet Page</a>
+    <a href="objectPage.php?pet_id=<?php echo $id?>" class="BreadCrumb">Sir Barkley</a>
+    <a href="objectPage.php?pet_id=<?php echo $id?>" class="currentBreadCrumb">Pet Page</a>
 </nav>
-<!-- 
+
 <div class="humburger">
     <div class="information">
         <img src="./images/greg.png" alt="">
@@ -116,7 +112,7 @@ $row = mysqli_fetch_array($result);
         <span>|</span>
         <a href="#">Support</a>
     </div>
-    </div> -->
+    </div>
     
 <section>
     <!--    Pet information    -->
@@ -133,7 +129,7 @@ $row = mysqli_fetch_array($result);
                 <h5>Age: Born in '.$row["age"].'</h5>
                 <br>
                 <form action="/editPetPage.php" method="GET">
-                <button type="submit" class="btn btn-primary">Edit pet</button>
+                <button type="submit" class = "petEdit">Edit pet</button>
                 </form>
                 '; ?>      
                 
@@ -145,7 +141,21 @@ $row = mysqli_fetch_array($result);
             <h5>Owners list</h5>
             <a href="#">Edit List</a>
         </div>
-        <div class="ownersList"></div>
+            <div class="ownersList">
+                <?php
+                while($row = mysqli_fetch_array($result))
+                {
+                    echo '<div class="owner">';
+                    echo '<h4>'.$row["name"].'</h4>';
+                    echo '<h3>Details</h3>';
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle details" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg>';
+                    echo '</div>';
+                }
+                ?>
+            </div>
     </div>
 
     <div id="objectListArea">
@@ -155,7 +165,7 @@ $row = mysqli_fetch_array($result);
                 <h3>Upcoming Tasks</h3>
                 <h4><a href="#" id="tasksNext" class="tableEnd">Next &#62;&#62;</a></h4>
             </div>
-            <div class="tasks"></div> <!-- Here adding new task from javascript file-->
+            <div id="myForm" class="tasks"></div> <!-- Here adding new task from javascript file-->
         </div>
 
         <div class="logStatus">

@@ -5,7 +5,7 @@ session_start();
 header("Cache-Control: no-cache, no-store", true);
 
 if(!isset($_SESSION["owner_id"])){
-    header('Location: index.php');
+    header('Location: index.html');
 }
 
 $query =    'SELECT * 
@@ -49,6 +49,7 @@ $result = mysqli_query($connection, $query);
             <a href="#">Events</a>
             <a href="#">Calendar</a>
             <a href="#">Logistics</a>
+            <a href="logout.php">Log out</a>
         </nav>
         <input class="searchInput" type="text" placeholder="Search">
         <svg class="menuHumburger" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
