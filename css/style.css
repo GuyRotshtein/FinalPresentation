@@ -284,6 +284,7 @@ header input::placeholder {
     justify-content: center;
     align-items: center;
     box-shadow: 1px 2px 3px #cccccc;
+
 }
 
 .addEntry>a {
@@ -486,6 +487,8 @@ section {
     position: absolute;
     width: 170px;
     height: 170px;
+    border-radius: 50%;
+    background-color: black;
 }
 
 .info>div:nth-child(1)>.cameraIcon {
@@ -1950,4 +1953,18 @@ h3 {
     width: auto;
     margin: 20px auto;
     border-radius: 100px;
+}
+
+.tasks .addEntry {
+    width: 584px;
+    top: 6px;
+    left: 8px;
+}
+
+.tableEnd {
+    color: #c3ddda !important ; 
+}
+
+.tableEnd:hover{
+    color: #c3ddda !important ;
 }

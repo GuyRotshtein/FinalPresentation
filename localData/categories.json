@@ -1,5 +1,4 @@
 {
-    "Species":["Dog","House cat","Apartment cat","Bird","Reptile","Guinea pig","Hamster","Rabbit","Snake"],
-    "Images":["1","2","3"]
-    
+    "Species":["Small dog","Big dog","House cat","Apartment cat","Bird","Reptile","Guinea pig","Hamster","Rabbit","Snake","Horse"],
+    "Images":["1","2","3"]    
 }

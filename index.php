@@ -10,7 +10,7 @@ if (!empty($_POST["submit"])) {
     $result = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($result);
     $_SESSION["imge"] = $row["imge"];
-    $_SESSION['owner_name'] = $row['name'];
+    $_SESSION['owner_name'] = explode(" ",$row['name']);
     
     if (is_array($row)) {
         $_SESSION["owner_id"] = $row["owner_id"];

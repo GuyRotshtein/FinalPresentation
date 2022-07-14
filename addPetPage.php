@@ -154,7 +154,6 @@ $categories = json_decode($categoryData,true);
               <span> <img id="PetImg" src="/images/icons/camera_1.png"> </span>
             </div>
             <button type="submit" class="btn btn-primary">Add</button>
-          </form>
         </form >
         </div>
     </section>
